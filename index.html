@@ -140,10 +140,15 @@
   }
   .bread-card {
     text-align: center;
-    padding: 18px 12px;
+    padding: 18px 12px 14px;
     background: var(--flour);
     border-radius: 14px;
     border: 1px solid var(--cream-dark);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
     transition: transform 0.25s, box-shadow 0.25s;
   }
   .bread-card:hover {
@@ -166,6 +171,25 @@
     color: var(--ink-soft);
     line-height: 1.4;
     margin: 0;
+  }
+  .bread-card-cta {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--amber);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .bread-card:hover .bread-card-cta,
+  .bread-card:focus-visible .bread-card-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .bread-card:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
   }
   .inline-svg {
     display: block;
@@ -478,6 +502,96 @@
     font-size: 40px;
     color: var(--crust);
     opacity: 0.4;
+  }
+
+  /* Recipes per bread type */
+  .recipes .recipe-card {
+    background: var(--flour);
+    border: 1px solid var(--cream-dark);
+    border-radius: 18px;
+    padding: 24px 26px;
+    margin: 24px 0;
+    box-shadow: 0 2px 10px rgba(139,69,19,0.05);
+    scroll-margin-top: 24px;
+    transition: box-shadow .25s ease, transform .25s ease;
+  }
+  .recipes .recipe-card:target {
+    border-color: var(--amber);
+    box-shadow: 0 10px 40px rgba(210,140,70,0.18);
+    animation: recipe-highlight 1.2s ease-out;
+  }
+  @keyframes recipe-highlight {
+    0% { box-shadow: 0 0 0 0 rgba(210,140,70,0.45); }
+    100% { box-shadow: 0 10px 40px rgba(210,140,70,0.18); }
+  }
+  .recipes .recipe-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--cream-dark);
+  }
+  .recipes .recipe-icon {
+    width: 90px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+  .recipes .recipe-head h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 24px;
+    color: var(--crust);
+    margin: 0 0 4px;
+    font-weight: 700;
+  }
+  .recipes .recipe-sub {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .recipes .recipe-body {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 26px;
+  }
+  .recipes .recipe-col h4 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 17px;
+    color: var(--amber);
+    margin: 0 0 10px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+  .recipes .recipe-col ul {
+    margin: 0;
+    padding-right: 20px;
+  }
+  .recipes .recipe-col li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .recipe-footer {
+    text-align: center;
+    margin-top: 28px;
+    padding: 18px;
+    background: var(--cream);
+    border-radius: 12px;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .recipe-footer a {
+    color: var(--crust);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--amber);
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 640px) {
+    .recipes .recipe-body { grid-template-columns: 1fr; gap: 18px; }
+    .recipes .recipe-head { flex-direction: column; text-align: center; gap: 8px; }
+    .recipes .recipe-icon { width: 100px; height: 70px; }
   }
 
   /* Problem/Solution grid */
@@ -794,6 +908,7 @@
     <li><a href="#feed">להאכיל את התינוקת</a></li>
     <li><a href="#ready">איך יודעים שהיא מוכנה</a></li>
     <li><a href="#recipe">המתכון בלי משקלים</a></li>
+    <li><a href="#recipes">מתכון לכל סוג לחם</a></li>
     <li><a href="#steps">שבעת השלבים</a></li>
     <li><a href="#aromas">סודות הריח והטעם</a></li>
     <li><a href="#troubleshoot">מה עושים כשזה לא עובד</a></li>
@@ -807,7 +922,7 @@
   <h2>משפחת הלחמים</h2>
   <p class="subtitle">שישה סוגי לחם שתלמדו להכין לאורך הקורס - מהבסיס עד המורכב</p>
   <div class="bread-grid">
-    <div class="bread-card">
+    <a class="bread-card" href="#r-boule">
       <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
         <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
@@ -815,8 +930,9 @@
       </svg>
       <h4>בּוּל</h4>
       <p>הקלאסי העגול, חתך אחד או X</p>
-    </div>
-    <div class="bread-card">
+      <span class="bread-card-cta">למתכון ←</span>
+    </a>
+    <a class="bread-card" href="#r-batard">
       <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="60" cy="68" rx="48" ry="4" fill="#8b4513" opacity=".2"/>
         <ellipse cx="60" cy="45" rx="50" ry="20" fill="none" stroke="#8b4513" stroke-width="2"/>
@@ -826,8 +942,9 @@
       </svg>
       <h4>בּאטאר</h4>
       <p>אליפסה עם חתכים אלכסוניים</p>
-    </div>
-    <div class="bread-card">
+      <span class="bread-card-cta">למתכון ←</span>
+    </a>
+    <a class="bread-card" href="#r-country">
       <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
         <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
@@ -841,8 +958,9 @@
       </svg>
       <h4>לחם כפרי</h4>
       <p>עם זרעים ודגנים</p>
-    </div>
-    <div class="bread-card">
+      <span class="bread-card-cta">למתכון ←</span>
+    </a>
+    <a class="bread-card" href="#r-rye">
       <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="60" cy="68" rx="38" ry="4" fill="#8b4513" opacity=".2"/>
         <rect x="22" y="28" width="76" height="36" rx="6" fill="none" stroke="#5c3317" stroke-width="2"/>
@@ -851,8 +969,9 @@
       </svg>
       <h4>שיפון מלא</h4>
       <p>צפוף, עמוק, ריח אדמה</p>
-    </div>
-    <div class="bread-card">
+      <span class="bread-card-cta">למתכון ←</span>
+    </a>
+    <a class="bread-card" href="#r-baguette">
       <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="60" cy="68" rx="48" ry="3" fill="#8b4513" opacity=".2"/>
         <path d="M15,45 Q15,38 25,38 L95,38 Q105,38 105,45 Q105,52 95,52 L25,52 Q15,52 15,45 Z" fill="none" stroke="#8b4513" stroke-width="2"/>
@@ -864,8 +983,9 @@
       </svg>
       <h4>באגט</h4>
       <p>ארוך ודק, קרום פריך</p>
-    </div>
-    <div class="bread-card">
+      <span class="bread-card-cta">למתכון ←</span>
+    </a>
+    <a class="bread-card" href="#steps">
       <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
         <path d="M20,60 Q20,25 60,25 Q100,25 100,60 Z" fill="none" stroke="#8b4513" stroke-width="2"/>
         <path d="M20,60 Q20,25 60,25 Q100,25 100,60 Z" fill="#faf3e7"/>
@@ -879,7 +999,8 @@
       </svg>
       <h4>חתך רוחב</h4>
       <p>פנים פתוח - היעד</p>
-    </div>
+      <span class="bread-card-cta">לשלבי האפייה ←</span>
+    </a>
   </div>
 </section>
 
@@ -1120,6 +1241,206 @@
 
   <h3>מלח - אחרי ההאכלה</h3>
   <p>את המלח מוסיפים <strong>רק אחרי שהבצק התאחד</strong> וקיבל כחצי שעה מנוחה (אוטוליזה - נגיע לזה). מלח במגע ישיר עם המחמצת מעכב את השמרים, ולכן נכנס בשלב השני.</p>
+</section>
+
+<!-- ====== Recipes per bread type ====== -->
+<section id="recipes" class="chapter recipes">
+  <div class="chapter-header">
+    <div class="chapter-number">מתכונים</div>
+    <h2>מתכון לכל <em>סוג לחם</em></h2>
+  </div>
+
+  <p>המתכון הבסיסי הוא אותו מתכון - שנוי בטעם ובצורה. אלו החלפות קטנות שהופכות את הבסיס לחמישה לחמים שונים לגמרי. כולם עוברים את שבעת השלבים של פרק הבא, רק עם מרכיבים שונים, עיצוב שונה וחריתה שונה.</p>
+
+  <article id="r-boule" class="recipe-card">
+    <div class="recipe-head">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="recipe-icon" aria-hidden="true">
+        <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
+        <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <path d="M30,35 Q60,25 90,35" stroke="#8b4513" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div>
+        <h3>בּוּל - הלחם העגול הקלאסי</h3>
+        <p class="recipe-sub">נקודת ההתחלה. לחם פנים רך, קרום זהוב, חתך אחד או X.</p>
+      </div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-col">
+        <h4>המרכיבים</h4>
+        <ul>
+          <li>4 כוסות קמח לחם (11%+ חלבון)</li>
+          <li>1½ כוס מים פושרים</li>
+          <li>½ כוס מחמצת פעילה בשיא</li>
+          <li>2 כפיות מלח</li>
+        </ul>
+      </div>
+      <div class="recipe-col">
+        <h4>מה מיוחד כאן</h4>
+        <ul>
+          <li><strong>עיצוב:</strong> כדור עגול ומוכן. מתחים את פני השטח ויוצרים כיפה אחידה.</li>
+          <li><strong>חריתה:</strong> חתך ארוך אחד באלכסון <em>או</em> X מרכזי.</li>
+          <li><strong>סלסלת תפיחה:</strong> עגולה.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article id="r-batard" class="recipe-card">
+    <div class="recipe-head">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="recipe-icon" aria-hidden="true">
+        <ellipse cx="60" cy="68" rx="48" ry="4" fill="#8b4513" opacity=".2"/>
+        <ellipse cx="60" cy="45" rx="50" ry="20" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <line x1="32" y1="35" x2="40" y2="55" stroke="#8b4513" stroke-width="1.5"/>
+        <line x1="52" y1="32" x2="60" y2="55" stroke="#8b4513" stroke-width="1.5"/>
+        <line x1="72" y1="32" x2="80" y2="55" stroke="#8b4513" stroke-width="1.5"/>
+      </svg>
+      <div>
+        <h3>בּאטאר - האליפסה הצרפתית</h3>
+        <p class="recipe-sub">אותו בצק של הבול, בצורה אליפטית ארוכה. הקלאסיקה של מאפיות פריז.</p>
+      </div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-col">
+        <h4>המרכיבים</h4>
+        <ul>
+          <li>4 כוסות קמח לחם</li>
+          <li>1½ כוס מים</li>
+          <li>½ כוס מחמצת פעילה</li>
+          <li>2 כפיות מלח</li>
+        </ul>
+      </div>
+      <div class="recipe-col">
+        <h4>מה מיוחד כאן</h4>
+        <ul>
+          <li><strong>עיצוב:</strong> מרדדים את הבצק לריבוע רופף, מקפלים כמו מעטפה, מגלגלים לגליל עם קצוות מחודדים.</li>
+          <li><strong>חריתה:</strong> 3-5 חתכים אלכסוניים חופפים קלות לאורך הגליל.</li>
+          <li><strong>סלסלת תפיחה:</strong> אליפטית.</li>
+          <li><strong>טיפ:</strong> אפייה בסיר סגלגל (אובלי) או על אבן שמוט עם קיטור.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article id="r-country" class="recipe-card">
+    <div class="recipe-head">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="recipe-icon" aria-hidden="true">
+        <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
+        <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <circle cx="45" cy="32" r="1.5" fill="#8b4513"/>
+        <circle cx="55" cy="28" r="1.5" fill="#8b4513"/>
+        <circle cx="65" cy="30" r="1.5" fill="#8b4513"/>
+        <circle cx="75" cy="35" r="1.5" fill="#8b4513"/>
+        <circle cx="50" cy="42" r="1.5" fill="#8b4513"/>
+        <circle cx="70" cy="45" r="1.5" fill="#8b4513"/>
+        <circle cx="60" cy="38" r="1.5" fill="#8b4513"/>
+      </svg>
+      <div>
+        <h3>לחם כפרי - עם זרעים ודגנים</h3>
+        <p class="recipe-sub">הלחם המזין והמלא. ניחוח קלוי, מרקם מורכב, עומק של אדמה.</p>
+      </div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-col">
+        <h4>המרכיבים</h4>
+        <ul>
+          <li>3 כוסות קמח לחם + 1 כוס קמח חיטה מלאה</li>
+          <li>1¾ כוסות מים (קמח מלא שותה יותר)</li>
+          <li>½ כוס מחמצת פעילה</li>
+          <li>2 כפיות מלח</li>
+          <li><strong>תערובת זרעים:</strong> 2 כפות פשתן + 2 כפות חמנייה + 1 כף שומשום</li>
+        </ul>
+      </div>
+      <div class="recipe-col">
+        <h4>מה מיוחד כאן</h4>
+        <ul>
+          <li><strong>השריית זרעים:</strong> שעה לפני הערבוב, משרים את הזרעים ב-½ כוס מים חמים. מוסיפים לבצק בשלב הקיפול הראשון.</li>
+          <li><strong>כיסוי חיצוני:</strong> לפני העיצוב הסופי, מגלגלים את הבצק בזרעים רטובים.</li>
+          <li><strong>עיצוב וחריתה:</strong> ככה-ככה כמו בול - פשוט ולא מצוחצח.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article id="r-rye" class="recipe-card">
+    <div class="recipe-head">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="recipe-icon" aria-hidden="true">
+        <ellipse cx="60" cy="68" rx="38" ry="4" fill="#8b4513" opacity=".2"/>
+        <rect x="22" y="28" width="76" height="36" rx="6" fill="none" stroke="#5c3317" stroke-width="2"/>
+        <line x1="35" y1="40" x2="85" y2="40" stroke="#5c3317" stroke-width="1"/>
+        <line x1="35" y1="48" x2="85" y2="48" stroke="#5c3317" stroke-width="1"/>
+      </svg>
+      <div>
+        <h3>שיפון מלא - הצפוף והעמוק</h3>
+        <p class="recipe-sub">צפוף, כהה, ריח אדמה. משתלב נהדר עם גבינות, דגים מעושנים ומרקים.</p>
+      </div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-col">
+        <h4>המרכיבים</h4>
+        <ul>
+          <li>2 כוסות קמח שיפון מלא + 2 כוסות קמח לחם</li>
+          <li>2 כוסות מים (שיפון שותה הרבה)</li>
+          <li>½ כוס מחמצת (רצוי מוזנת בשיפון)</li>
+          <li>2¼ כפיות מלח (שיפון צריך קצת יותר)</li>
+          <li><strong>אופציונלי:</strong> כף כמון שלם / זרעי שומר</li>
+        </ul>
+      </div>
+      <div class="recipe-col">
+        <h4>מה מיוחד כאן</h4>
+        <ul>
+          <li><strong>בלי אוטוליזה:</strong> שיפון לא מפתח גלוטן, אז פשוט מערבבים הכל יחד בבת אחת.</li>
+          <li><strong>פחות קיפולים:</strong> 2 סטים מספיקים. יותר מזה לא עוזר.</li>
+          <li><strong>אפייה בתבנית אינגליש קייק:</strong> לחם שיפון קלאסי בצורת לבנה. משמנים את התבנית היטב.</li>
+          <li><strong>חריתה:</strong> 2-3 שריטות עדינות בעזרת מזלג. לא חתך עמוק.</li>
+          <li><strong>מנוחה:</strong> ממתינים <strong>לפחות 12 שעות</strong> אחרי האפייה לפני חיתוך - אחרת הפנים ייראה דביק.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article id="r-baguette" class="recipe-card">
+    <div class="recipe-head">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="recipe-icon" aria-hidden="true">
+        <ellipse cx="60" cy="68" rx="48" ry="3" fill="#8b4513" opacity=".2"/>
+        <path d="M15,45 Q15,38 25,38 L95,38 Q105,38 105,45 Q105,52 95,52 L25,52 Q15,52 15,45 Z" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <line x1="28" y1="40" x2="32" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="42" y1="40" x2="46" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="56" y1="40" x2="60" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="70" y1="40" x2="74" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="84" y1="40" x2="88" y2="50" stroke="#8b4513" stroke-width="1"/>
+      </svg>
+      <div>
+        <h3>באגטים - אין טוב יותר מטרי</h3>
+        <p class="recipe-sub">דק, ארוך, קרום פריך. מהמתכון הזה יוצאים 3 באגטים יפים.</p>
+      </div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-col">
+        <h4>המרכיבים</h4>
+        <ul>
+          <li>4 כוסות קמח לחם (חלבון גבוה)</li>
+          <li>1⅓ כוסות מים (פחות מבול - בשביל מרקם פריך)</li>
+          <li>⅓ כוס מחמצת פעילה</li>
+          <li>2 כפיות מלח</li>
+        </ul>
+      </div>
+      <div class="recipe-col">
+        <h4>מה מיוחד כאן</h4>
+        <ul>
+          <li><strong>חלוקה:</strong> אחרי התפיחה הראשונה, מחלקים את הבצק ל-3 חלקים שווים.</li>
+          <li><strong>עיצוב:</strong> כל חלק מרדדים לריבוע, מקפלים לשלישים, מגלגלים לגליל ארוך ודק (35-40 ס"מ).</li>
+          <li><strong>סלסלה:</strong> מניחים על מגבת מקומחת עם קיפולים בין הבאגטים (couche).</li>
+          <li><strong>חריתה:</strong> 3-5 חתכים אלכסוניים ארוכים שחופפים קלות.</li>
+          <li><strong>אפייה:</strong> 230° על אבן או תבנית רותחת, עם קיטור (4-5 קוביות קרח בתבנית תחתונה). 18-22 דקות עד חום זהוב.</li>
+          <li><strong>אוכלים אותו:</strong> באותו יום. באגט של אתמול = קרוטונים מחר.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <div class="recipe-footer">
+    <p>כולם עוברים את <a href="#steps">שבעת השלבים של פרק הבא</a>. אם הבסיס מובן - כל לחם כאן הוא וריאציה, לא מתכון חדש.</p>
+  </div>
 </section>
 
 <!-- ====== 7 ====== -->
