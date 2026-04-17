@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קורס לחם מחמצת — מהאם הראשונה ועד הקראסט המושלם</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf3e7;
+    --cream-dark: #f0e4cf;
+    --crust: #8b4513;
+    --crust-light: #a0522d;
+    --amber: #d4a574;
+    --amber-soft: #e8c896;
+    --ink: #2c1810;
+    --ink-soft: #5a3e2b;
+    --flour: #fffaf0;
+    --rye: #5c3317;
+    --leaf: #6b7d5a;
+    --tomato: #c94f3d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Assistant', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 18px;
+    direction: rtl;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(212, 165, 116, 0.08) 0, transparent 50%),
+      radial-gradient(circle at 80% 60%, rgba(139, 69, 19, 0.06) 0, transparent 40%);
+    min-height: 100vh;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 50px;
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .hero-svg {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    margin: 30px auto 20px;
+    display: block;
+    filter: drop-shadow(0 10px 30px rgba(139,69,19,0.2));
+  }
+  /* Bread gallery */
+  .gallery {
+    background: linear-gradient(180deg, var(--flour) 0%, var(--cream) 100%);
+    border: 1px solid var(--cream-dark);
+    border-radius: 18px;
+    padding: 40px 32px;
+    margin: 0 0 60px;
+  }
+  .gallery h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--crust);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .gallery .subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+  .bread-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 24px;
+  }
+  .bread-card {
+    text-align: center;
+    padding: 18px 12px;
+    background: var(--flour);
+    border-radius: 14px;
+    border: 1px solid var(--cream-dark);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .bread-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(139,69,19,0.12);
+  }
+  .bread-card svg {
+    width: 100%;
+    height: 110px;
+  }
+  .bread-card h4 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 18px;
+    color: var(--crust);
+    margin: 12px 0 4px;
+    font-weight: 700;
+  }
+  .bread-card p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin: 0;
+  }
+  .inline-svg {
+    display: block;
+    margin: 30px auto;
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+  }
+  .hero::before {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--crust);
+    margin: 0 auto 24px;
+    border-radius: 2px;
+  }
+  .hero-kicker {
+    font-family: 'Assistant', sans-serif;
+    letter-spacing: 0.3em;
+    font-size: 14px;
+    color: var(--crust-light);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--crust);
+    font-weight: 500;
+  }
+  .hero .lede {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+  .hero .byline {
+    margin-top: 32px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--flour);
+    border: 1px solid var(--cream-dark);
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin: 0 0 60px;
+    box-shadow: 0 2px 20px rgba(139, 69, 19, 0.06);
+  }
+  .toc h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 22px;
+    margin-bottom: 18px;
+    color: var(--crust);
+    font-weight: 700;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    columns: 2;
+    column-gap: 30px;
+  }
+  .toc ol li {
+    counter-increment: toc;
+    padding: 6px 0;
+    break-inside: avoid;
+  }
+  .toc ol li::before {
+    content: counter(toc, decimal-leading-zero);
+    display: inline-block;
+    width: 34px;
+    color: var(--amber);
+    font-weight: 700;
+    font-family: 'Frank Ruhl Libre', serif;
+  }
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+    transition: border-color 0.15s;
+  }
+  .toc a:hover { border-color: var(--crust); }
+
+  /* Sections */
+  section.chapter {
+    margin: 0 0 80px;
+    scroll-margin-top: 20px;
+  }
+  .chapter-header {
+    border-top: 2px solid var(--cream-dark);
+    padding-top: 30px;
+    margin-bottom: 30px;
+  }
+  .chapter-number {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    color: var(--amber);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .chapter h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .chapter h2 em {
+    font-style: italic;
+    color: var(--crust);
+    font-weight: 500;
+  }
+  .chapter h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 36px 0 14px;
+  }
+  .chapter h4 {
+    font-family: 'Assistant', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--crust);
+    margin: 24px 0 10px;
+  }
+  .chapter p {
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+  .chapter p strong { font-weight: 700; color: var(--ink); }
+  .chapter ul, .chapter ol {
+    padding-right: 24px;
+    margin-bottom: 22px;
+  }
+  .chapter ul li, .chapter ol li {
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+
+  /* Callouts */
+  .callout {
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 28px 0;
+    position: relative;
+    font-size: 17px;
+  }
+  .callout::before {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .tip {
+    background: linear-gradient(135deg, #fef7e6 0%, #fceec5 100%);
+    border-right: 4px solid var(--amber);
+  }
+  .tip::before { content: "טיפ של אופה"; color: var(--crust); }
+
+  .secret {
+    background: linear-gradient(135deg, #f4e6d7 0%, #e8d2b5 100%);
+    border-right: 4px solid var(--crust);
+  }
+  .secret::before { content: "סוד המטבח"; color: var(--rye); }
+
+  .warning {
+    background: linear-gradient(135deg, #fde9e4 0%, #f7d4c9 100%);
+    border-right: 4px solid var(--tomato);
+  }
+  .warning::before { content: "זהירות"; color: var(--tomato); }
+
+  .senses {
+    background: linear-gradient(135deg, #eaf0e0 0%, #d7e3c4 100%);
+    border-right: 4px solid var(--leaf);
+  }
+  .senses::before { content: "מה הגוף מרגיש"; color: var(--leaf); }
+
+  /* Pull quote */
+  .pull-quote {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.4;
+    font-weight: 500;
+    font-style: italic;
+    text-align: center;
+    color: var(--crust);
+    padding: 30px 20px;
+    margin: 40px 0;
+    border-top: 1px solid var(--cream-dark);
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  /* Steps */
+  .steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: step;
+  }
+  .steps li {
+    counter-increment: step;
+    padding: 18px 70px 18px 20px;
+    margin-bottom: 16px;
+    background: var(--flour);
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 1px 8px rgba(139, 69, 19, 0.04);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    width: 38px;
+    height: 38px;
+    background: var(--crust);
+    color: var(--flour);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .steps li strong {
+    display: block;
+    font-size: 19px;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  /* Timeline */
+  .timeline {
+    background: var(--flour);
+    border-radius: 14px;
+    padding: 28px;
+    margin: 30px 0;
+  }
+  .timeline-row {
+    display: flex;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--cream-dark);
+    gap: 20px;
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-time {
+    flex: 0 0 130px;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    color: var(--crust);
+    font-size: 18px;
+  }
+  .timeline-what { flex: 1; font-weight: 300; }
+  .timeline-what strong { font-weight: 700; }
+
+  /* Ratio card */
+  .ratio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: linear-gradient(135deg, var(--amber-soft) 0%, var(--amber) 100%);
+    padding: 30px;
+    border-radius: 14px;
+    margin: 28px 0;
+    text-align: center;
+    color: var(--ink);
+  }
+  .ratio-num {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .ratio-label {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 700;
+  }
+  .ratio-plus {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 40px;
+    color: var(--crust);
+    opacity: 0.4;
+  }
+
+  /* Problem/Solution grid */
+  .trouble {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .trouble-card {
+    background: var(--flour);
+    border-radius: 10px;
+    padding: 20px 24px;
+    border-right: 3px solid var(--amber);
+  }
+  .trouble-card h4 {
+    color: var(--tomato);
+    margin-top: 0;
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+  .trouble-card p { margin: 0; font-size: 16px; }
+  .trouble-card p strong { color: var(--leaf); }
+
+  /* Flavor grid */
+  .flavors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin: 28px 0;
+  }
+  .flavor-card {
+    background: var(--flour);
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 2px 12px rgba(139, 69, 19, 0.05);
+    border-top: 3px solid var(--amber);
+  }
+  .flavor-card h4 {
+    margin: 0 0 10px;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 20px;
+    color: var(--crust);
+  }
+  .flavor-card p { margin: 0; font-size: 16px; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 60px 20px 20px;
+    color: var(--ink-soft);
+    font-style: italic;
+    border-top: 2px solid var(--cream-dark);
+    margin-top: 40px;
+  }
+  footer p { margin-bottom: 8px; }
+
+  /* Divider */
+  .divider {
+    text-align: center;
+    color: var(--amber);
+    font-size: 20px;
+    margin: 40px 0;
+    letter-spacing: 0.8em;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .wrap { padding: 20px 16px 60px; }
+    .toc ol { columns: 1; }
+    .timeline-row { flex-direction: column; gap: 4px; }
+    .timeline-time { flex: none; }
+  }
+
+  @media print {
+    body { background: white; font-size: 12pt; }
+    .callout, .timeline, .flavor-card { break-inside: avoid; }
+    .chapter { break-before: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-kicker">קורס מלא — מתחילות ומתחילים</div>
+  <h1>הקסם של <em>לחם מחמצת</em></h1>
+
+  <svg class="hero-svg" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="לחם מחמצת קלאסי">
+    <defs>
+      <radialGradient id="crust" cx="42%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#f4d4a3"/>
+        <stop offset="35%" stop-color="#d4a574"/>
+        <stop offset="65%" stop-color="#a0522d"/>
+        <stop offset="92%" stop-color="#6b3410"/>
+        <stop offset="100%" stop-color="#4a2308"/>
+      </radialGradient>
+      <linearGradient id="earGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f5deb3"/>
+        <stop offset="60%" stop-color="#c8935c"/>
+        <stop offset="100%" stop-color="#7a4620"/>
+      </linearGradient>
+      <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+        <stop offset="0%" stop-color="#ffe4b5" stop-opacity=".55"/>
+        <stop offset="100%" stop-color="#ffe4b5" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="soft"><feGaussianBlur stdDeviation="1"/></filter>
+    </defs>
+    <rect width="600" height="380" fill="url(#glow)"/>
+    <ellipse cx="300" cy="320" rx="210" ry="16" fill="#4a2308" opacity=".22"/>
+    <path d="M110,195 C110,110 190,70 300,70 C410,70 490,110 490,195 C490,275 410,315 300,315 C190,315 110,275 110,195 Z" fill="url(#crust)"/>
+    <path d="M165,135 Q300,95 435,135 L420,175 Q300,130 180,175 Z" fill="url(#earGrad)" opacity=".95"/>
+    <path d="M165,135 Q300,95 435,135" stroke="#3d1f08" stroke-width="2" fill="none" opacity=".5"/>
+    <path d="M170,210 Q200,200 230,215" stroke="#6b3410" stroke-width="1.5" fill="none" opacity=".4"/>
+    <path d="M370,215 Q400,205 430,220" stroke="#6b3410" stroke-width="1.5" fill="none" opacity=".4"/>
+    <g opacity=".75" filter="url(#soft)">
+      <circle cx="210" cy="115" r="1.8" fill="#fffaf0"/>
+      <circle cx="250" cy="105" r="1.4" fill="#fffaf0"/>
+      <circle cx="290" cy="92" r="2.1" fill="#fffaf0"/>
+      <circle cx="330" cy="100" r="1.5" fill="#fffaf0"/>
+      <circle cx="380" cy="112" r="1.7" fill="#fffaf0"/>
+      <circle cx="235" cy="180" r="1" fill="#fffaf0"/>
+      <circle cx="370" cy="200" r="1.1" fill="#fffaf0"/>
+      <circle cx="290" cy="230" r="1.2" fill="#fffaf0"/>
+      <circle cx="155" cy="205" r="1" fill="#fffaf0"/>
+      <circle cx="420" cy="240" r="1.3" fill="#fffaf0"/>
+    </g>
+    <g transform="translate(75,210) rotate(-18)" opacity=".75">
+      <line x1="0" y1="0" x2="0" y2="85" stroke="#8b6c42" stroke-width="1.5"/>
+      <ellipse cx="-6" cy="15" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="6" cy="25" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="-6" cy="38" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="6" cy="50" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="-5" cy="62" rx="3.5" ry="7" fill="#d4a574"/>
+    </g>
+    <g transform="translate(525,210) rotate(18)" opacity=".75">
+      <line x1="0" y1="0" x2="0" y2="85" stroke="#8b6c42" stroke-width="1.5"/>
+      <ellipse cx="-6" cy="15" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="6" cy="25" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="-6" cy="38" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="6" cy="50" rx="4" ry="8" fill="#d4a574"/>
+      <ellipse cx="-5" cy="62" rx="3.5" ry="7" fill="#d4a574"/>
+    </g>
+  </svg>
+
+  <p class="lede">אין משקלים. אין לחץ. רק יחסים, חושים, וחבר אחד חי שגר בצנצנת במטבח שלך. בסוף הקורס יהיה לך לחם עם קראסט זהוב, פנים ספוגי, וריח שיעיף את כל השכנים.</p>
+  <div class="byline">מדריך מלא, ידידותי, צעד אחרי צעד — לחם שיעשה קסם.</div>
+</header>
+
+<nav class="toc">
+  <h2>מה בתפריט</h2>
+  <ol>
+    <li><a href="#intro">מה זה בכלל מחמצת</a></li>
+    <li><a href="#gear">הציוד שצריך באמת</a></li>
+    <li><a href="#starter">לידת האֵם — המחמצת שלך</a></li>
+    <li><a href="#feed">להאכיל את התינוקת</a></li>
+    <li><a href="#ready">איך יודעים שהיא מוכנה</a></li>
+    <li><a href="#recipe">המתכון בלי משקלים</a></li>
+    <li><a href="#steps">שבעת השלבים</a></li>
+    <li><a href="#aromas">סודות הריח והטעם</a></li>
+    <li><a href="#troubleshoot">מה עושים כשזה לא עובד</a></li>
+    <li><a href="#pro">טריקים של מקצוענים</a></li>
+    <li><a href="#schedule">לוח זמנים מוצע</a></li>
+    <li><a href="#philosophy">הפילוסופיה של הלחם</a></li>
+  </ol>
+</nav>
+
+<section class="gallery">
+  <h2>משפחת הלחמים</h2>
+  <p class="subtitle">שישה סוגי לחם שתלמדי להכין לאורך הקורס — מהבסיס עד המורכב</p>
+  <div class="bread-grid">
+    <div class="bread-card">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
+        <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <path d="M30,35 Q60,25 90,35" stroke="#8b4513" stroke-width="1.5" fill="none"/>
+      </svg>
+      <h4>בּוּל</h4>
+      <p>הקלאסי העגול, חתך אחד או X</p>
+    </div>
+    <div class="bread-card">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="68" rx="48" ry="4" fill="#8b4513" opacity=".2"/>
+        <ellipse cx="60" cy="45" rx="50" ry="20" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <line x1="32" y1="35" x2="40" y2="55" stroke="#8b4513" stroke-width="1.5"/>
+        <line x1="52" y1="32" x2="60" y2="55" stroke="#8b4513" stroke-width="1.5"/>
+        <line x1="72" y1="32" x2="80" y2="55" stroke="#8b4513" stroke-width="1.5"/>
+      </svg>
+      <h4>בּאטאר</h4>
+      <p>אליפסה עם חתכים אלכסוניים</p>
+    </div>
+    <div class="bread-card">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
+        <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <circle cx="45" cy="32" r="1.5" fill="#8b4513"/>
+        <circle cx="55" cy="28" r="1.5" fill="#8b4513"/>
+        <circle cx="65" cy="30" r="1.5" fill="#8b4513"/>
+        <circle cx="75" cy="35" r="1.5" fill="#8b4513"/>
+        <circle cx="50" cy="42" r="1.5" fill="#8b4513"/>
+        <circle cx="70" cy="45" r="1.5" fill="#8b4513"/>
+        <circle cx="60" cy="38" r="1.5" fill="#8b4513"/>
+      </svg>
+      <h4>לחם כפרי</h4>
+      <p>עם זרעים ודגנים</p>
+    </div>
+    <div class="bread-card">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="68" rx="38" ry="4" fill="#8b4513" opacity=".2"/>
+        <rect x="22" y="28" width="76" height="36" rx="6" fill="none" stroke="#5c3317" stroke-width="2"/>
+        <line x1="35" y1="40" x2="85" y2="40" stroke="#5c3317" stroke-width="1"/>
+        <line x1="35" y1="48" x2="85" y2="48" stroke="#5c3317" stroke-width="1"/>
+      </svg>
+      <h4>שיפון מלא</h4>
+      <p>צפוף, עמוק, ריח אדמה</p>
+    </div>
+    <div class="bread-card">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="68" rx="48" ry="3" fill="#8b4513" opacity=".2"/>
+        <path d="M15,45 Q15,38 25,38 L95,38 Q105,38 105,45 Q105,52 95,52 L25,52 Q15,52 15,45 Z" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <line x1="28" y1="40" x2="32" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="42" y1="40" x2="46" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="56" y1="40" x2="60" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="70" y1="40" x2="74" y2="50" stroke="#8b4513" stroke-width="1"/>
+        <line x1="84" y1="40" x2="88" y2="50" stroke="#8b4513" stroke-width="1"/>
+      </svg>
+      <h4>באגט</h4>
+      <p>ארוך ודק, קרום פריך</p>
+    </div>
+    <div class="bread-card">
+      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20,60 Q20,25 60,25 Q100,25 100,60 Z" fill="none" stroke="#8b4513" stroke-width="2"/>
+        <path d="M20,60 Q20,25 60,25 Q100,25 100,60 Z" fill="#faf3e7"/>
+        <circle cx="35" cy="48" r="3" fill="none" stroke="#c8935c" stroke-width="0.8"/>
+        <circle cx="50" cy="42" r="4.5" fill="none" stroke="#c8935c" stroke-width="0.8"/>
+        <circle cx="65" cy="50" r="3.5" fill="none" stroke="#c8935c" stroke-width="0.8"/>
+        <circle cx="80" cy="45" r="4" fill="none" stroke="#c8935c" stroke-width="0.8"/>
+        <circle cx="45" cy="55" r="2.5" fill="none" stroke="#c8935c" stroke-width="0.8"/>
+        <circle cx="72" cy="56" r="2" fill="none" stroke="#c8935c" stroke-width="0.8"/>
+        <path d="M20,60 Q20,25 60,25 Q100,25 100,60" fill="none" stroke="#8b4513" stroke-width="2"/>
+      </svg>
+      <h4>חתך רוחב</h4>
+      <p>פנים פתוח — היעד</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 1 ====== -->
+<section id="intro" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק ראשון</div>
+    <h2>מה זה <em>בכלל</em> מחמצת</h2>
+  </div>
+
+  <p>לחם מחמצת הוא הלחם הכי עתיק בעולם. הוא קדם לשמרים התעשייתיים באלפי שנים, ולמעשה הוא הלחם שבני אדם אפו בכל מקום על הגלובוס לפני שקמה תעשיית האפייה המודרנית. הכוכב בסיפור הזה הוא <strong>שילוב חי של חיידקי חומצת חלב ושמרים פראיים</strong> שחיים בשלום בתוך בלילה של קמח ומים.</p>
+
+  <p>החיידקים מייצרים חומצה לקטית ואצטית — וזה מקור הטעם החמצמץ והעומק. השמרים הפראיים אחראים על גז הפחמן הדו־חמצני שמנפח את הבצק. הפלא האמיתי הוא שכל זה קורה באיטיות, על פני שעות רבות, ובתהליך הזה נוצרים טעמים, ניחוחות וחלבונים חדשים שאי אפשר לקבל בשום דרך אחרת.</p>
+
+  <div class="pull-quote">
+    לחם מחמצת הוא לא מתכון — הוא מערכת יחסים.<br>
+    את לא אופה אותו. את <em>מגדלת</em> אותו.
+  </div>
+
+  <h3>למה הוא כל כך טעים (באמת)</h3>
+  <p>שלושה דברים קורים בבצק שלנו בזמן התפיחה הארוכה:</p>
+  <ul>
+    <li><strong>הטעם מתפתח.</strong> אנזימים מפרקים את העמילנים והחלבונים ומשחררים סוכרים, חומצות אמינו וארומות עמוקות.</li>
+    <li><strong>המבנה משתפר.</strong> הגלוטן נרגע, מתיישר, ומייצר רשת גמישה שתלכוד את הגזים.</li>
+    <li><strong>העיכול קל יותר.</strong> פיטאט וגלוטן מתפרקים חלקית, והלחם יושב טוב יותר על הבטן.</li>
+  </ul>
+
+  <div class="callout tip">
+    המחמצת לא דורשת ממך להיות מדויקת — היא דורשת ממך להיות <strong>קשובה</strong>. זה ההבדל בין מתכון של מכונה למתכון של בן אדם.
+  </div>
+</section>
+
+<!-- ====== 2 ====== -->
+<section id="gear" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק שני</div>
+    <h2>הציוד שצריך <em>באמת</em></h2>
+  </div>
+
+  <p>קטלוגים של אפייה מנסים למכור לנו המון מכשירים. האמת היא שצריך הרבה פחות ממה שנדמה. הנה הרשימה המינימלית שבאמת חשובה:</p>
+
+  <h4>ההכרחי באמת</h4>
+  <ul>
+    <li><strong>צנצנת זכוכית</strong> בגודל בינוני עם מכסה רופף למחמצת. לא אטומה — המחמצת צריכה לנשום.</li>
+    <li><strong>קערה גדולה</strong> שנותנת לבצק מקום לתפוח פי שניים בלי להישפך.</li>
+    <li><strong>סיר ברזל יצוק או סיר עם מכסה עמיד בחום</strong> — זה הנשק הסודי שהופך תנור ביתי לתנור מאפייה.</li>
+    <li><strong>מגבת פשתן או כותנה נקייה</strong> לכיסוי הבצק.</li>
+    <li><strong>להב חד</strong> לחריתה — סכין ארוך ודק, ז'ילט, או להב יעודי.</li>
+    <li><strong>מדחום בסיסי</strong> — לא חובה, אבל פותר המון חידות בתחילת הדרך.</li>
+  </ul>
+
+  <h4>נחמד שיהיה</h4>
+  <ul>
+    <li>סלסלת תפיחה (בָּנֶטוֹן) או קערה מרופדת במגבת מקומח היטב — כדי לתפוח יפה בצורה.</li>
+    <li>מרית סיליקון לערבוב.</li>
+    <li>מגרד בצק מפלסטיק או מתכת — יד שנייה שעוזרת המון.</li>
+  </ul>
+
+  <div class="callout secret">
+    הסיר עם מכסה הוא הטריק שמייצר קראסט מקצועי בבית. הוא כולא את הלחות שנפלטת מהבצק בהתחלה, מאדה אותו, ויוצר את הבהק הזהוב והצלצול שמאפיין לחם טוב.
+  </div>
+</section>
+
+<!-- ====== 3 ====== -->
+<section id="starter" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק שלישי</div>
+    <h2>לידת <em>האֵם</em></h2>
+  </div>
+
+  <p>המחמצת שלך תיוולד מקמח, ממים ומאוויר. כן, רק ככה. חיידקי השמרים הפראיים נמצאים בכל מקום סביבנו — על קליפות הפירות, בקמח, באוויר של המטבח שלך. אנחנו רק מזמינים אותם למסיבה עם אוכל ומים.</p>
+
+  <svg class="inline-svg" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="צנצנת מחמצת">
+    <defs>
+      <linearGradient id="jarGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f5e6c8" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="#d4a574" stop-opacity=".15"/>
+      </linearGradient>
+      <linearGradient id="mchmGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f4e4c1"/>
+        <stop offset="100%" stop-color="#c8a674"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="150" cy="240" rx="75" ry="6" fill="#8b4513" opacity=".18"/>
+    <path d="M95,50 L95,60 Q95,65 100,65 L200,65 Q205,65 205,60 L205,50 Z" fill="#8b4513" opacity=".7"/>
+    <path d="M90,65 L90,225 Q90,235 100,235 L200,235 Q210,235 210,225 L210,65 Z" fill="url(#jarGrad)" stroke="#c8a674" stroke-width="1.5"/>
+    <path d="M95,140 L95,225 Q95,232 102,232 L198,232 Q205,232 205,225 L205,140 Q150,160 95,140 Z" fill="url(#mchmGrad)"/>
+    <circle cx="115" cy="155" r="4" fill="#f5e6c8" opacity=".8"/>
+    <circle cx="140" cy="170" r="6" fill="#faf3e7" opacity=".7"/>
+    <circle cx="170" cy="162" r="3" fill="#f5e6c8" opacity=".8"/>
+    <circle cx="185" cy="180" r="5" fill="#faf3e7" opacity=".7"/>
+    <circle cx="125" cy="190" r="3" fill="#f5e6c8" opacity=".8"/>
+    <circle cx="155" cy="200" r="4" fill="#faf3e7" opacity=".6"/>
+    <circle cx="180" cy="210" r="3" fill="#f5e6c8" opacity=".8"/>
+    <circle cx="110" cy="215" r="2" fill="#faf3e7" opacity=".6"/>
+    <rect x="88" y="175" width="124" height="3" fill="#c94f3d" opacity=".5"/>
+    <text x="150" y="118" text-anchor="middle" font-family="Frank Ruhl Libre, serif" font-size="13" fill="#8b4513" font-weight="700">מחמצת</text>
+  </svg>
+
+
+  <h3>השבוע הראשון — תהליך הלידה</h3>
+  <p>יוצרים מחמצת חדשה בערך בשבעה ימים. התהליך זהה כל יום: לוקחים מעט מהבלילה של אתמול, מוסיפים מנה שווה של קמח ומנה שווה של מים (ביחס שהולך לחזור על עצמו כל הקורס), מערבבים, סוגרים בצנצנת ומחכים.</p>
+
+  <div class="ratio">
+    <div>
+      <div class="ratio-num">1</div>
+      <div class="ratio-label">מחמצת</div>
+    </div>
+    <div class="ratio-plus">+</div>
+    <div>
+      <div class="ratio-num">1</div>
+      <div class="ratio-label">קמח</div>
+    </div>
+    <div class="ratio-plus">+</div>
+    <div>
+      <div class="ratio-num">1</div>
+      <div class="ratio-label">מים</div>
+    </div>
+  </div>
+
+  <p>מה זה אומר בלי משקלים? כל פעם שלוקחים <em>כף</em> מחמצת, מוסיפים <em>כף</em> קמח ו<em>כף</em> מים. פשוט ככה. היחס חשוב, לא הכמות המוחלטת.</p>
+
+  <ol class="steps">
+    <li><strong>יום 1 — הזיווג הראשון.</strong> בצנצנת נקייה, מערבבים שתי כפות קמח מלא ושתי כפות מים פושרים. הבלילה צריכה להיראות כמו דייסה סמיכה. סוגרים ברופף ומשאירים בפינה חמימה ונעימה (לא שמש ישירה).</li>
+    <li><strong>יום 2 — ממתינים.</strong> אולי יופיעו בועות קטנות. אולי לא. לא לדאוג, היא רק מתעוררת.</li>
+    <li><strong>יום 3 — ההאכלה הראשונה.</strong> זורקים חצי מהצנצנת, מוסיפים שוב שתי כפות קמח ושתי כפות מים. מערבבים, סוגרים, וממתינים. כבר מתחיל להריח חמוץ.</li>
+    <li><strong>יום 4 — חיים אמיתיים.</strong> בועות יותר, ריח יותר חזק, אולי קצת חמצמץ. להמשיך להאכיל פעם ביום באותו יחס.</li>
+    <li><strong>יום 5 עד 7 — התייצבות.</strong> המחמצת מתחילה להכפיל את הנפח שלה אחרי האכלה, הריח מתאזן והבועות צפופות ורגילות.</li>
+  </ol>
+
+  <div class="callout warning">
+    ביום 3-4 לפעמים יש ריח מוזר שמזכיר גרב. זה נורמלי לגמרי — החיידקים הטובים עוד לא השתלטו. עוד יום-יומיים והריח יתאזן לחמצמץ נעים.
+  </div>
+
+  <h3>קמח — מה בוחרים</h3>
+  <p>אפשר להתחיל מכל קמח. אבל הגרעינים המלאים (שיפון, חיטה מלאה) מלאים במיקרואורגניזמים ומסיעים את התהליך קדימה בקלות. טריק קלאסי: להתחיל מ<strong>קמח שיפון מלא</strong> לכמה ימים, ואז להעביר את המחמצת בהדרגה לקמח חיטה לבן. זה כמו להדליק מדורה — שיפון הוא הנייר המקומט, חיטה היא הגזרים היציבים.</p>
+</section>
+
+<!-- ====== 4 ====== -->
+<section id="feed" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק רביעי</div>
+    <h2>להאכיל את <em>התינוקת</em></h2>
+  </div>
+
+  <p>המחמצת היא יצור חי. כמו חתול — אי אפשר להכניס אותה למגירה ולשכוח. אבל בניגוד לחתול, אפשר להכניס אותה למקרר ולהאכיל פעם בשבוע. היא סלחנית מאוד.</p>
+
+  <h3>שתי מצבים: פעילה או רדומה</h3>
+  <p><strong>פעילה</strong> = על הדלפק. צריך להאכיל פעם ביום עד פעמיים ביום. היא תהיה עירנית, מבעבעת, וכפולה בנפח תוך כמה שעות מהאכלה.</p>
+  <p><strong>רדומה</strong> = במקרר. מספיק להאכיל פעם בשבוע. היא בתרדמת חורף — חיה אבל שוקטת.</p>
+
+  <h3>יחס ההאכלה — הלב של הקורס</h3>
+  <p>היחס הקלאסי הוא <strong>1:1:1</strong> — חלק אחד מחמצת קיימת, חלק אחד קמח, חלק אחד מים. אם יש לנו יותר זמן (או שרוצים טעם יותר עדין), אפשר לעבור ל<strong>1:2:2</strong> או אפילו <strong>1:5:5</strong> — פחות מחמצת יחסית, יותר אוכל חדש, תפיחה איטית יותר.</p>
+
+  <div class="callout tip">
+    <strong>טריק הזריקה:</strong> לפני כל האכלה זורקים את רוב המחמצת ומשאירים רק מעט. זה נשמע בזבוז, אבל אם לא עושים את זה — הכמות מתפוצצת והחיידקים רעבים. את הנזרק אפשר לאפות לקרקרים, לפנקייק, או לבלילה של חביתיות.
+  </div>
+
+  <h3>מים — עניין של פה</h3>
+  <p>אם מי הברז אצלך מכילים כלור חזק — עדיף להשאיר כוס מים על הדלפק לכמה שעות לפני ההאכלה. הכלור מתנדף, והחיידקים מודים לך. מים ממסננת או מי ברז שעמדו לילה גם מצוינים.</p>
+
+  <h3>טמפרטורה — השחקנית הסמויה</h3>
+  <p>במטבח חמים (מעל 24 מעלות) המחמצת תרוץ מהר. במטבח קריר (מתחת 20) היא תהיה עצלה. אם יש לך תנור עם אור — אור התנור הדלוק יוצר סביבה חמימה ומושלמת של כ־25 מעלות. זה טריק מצוין בחורף.</p>
+
+  <div class="callout senses">
+    מחמצת בריאה מריחה כמו <strong>יוגורט עם נגיעה של אלכוהול ופירות</strong>. אם היא מריחה כמו אצטון חריף — היא רעבה מאוד (האכילי אותה בדחיפות). אם היא מריחה כמו ריקבון — קרה משהו לא טוב וכדאי להתחיל מחדש.
+  </div>
+</section>
+
+<!-- ====== 5 ====== -->
+<section id="ready" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק חמישי</div>
+    <h2>איך יודעים שהיא <em>מוכנה</em> לאפייה</h2>
+  </div>
+
+  <p>הטעות הכי נפוצה של אופות מתחילות היא להשתמש במחמצת במצב הלא נכון. שמרן פראי זה לא כמו שמרים תעשייתיים — יש לו רגעי שיא ואם מפספסים אותם הלחם יוצא דחוס או שטוח.</p>
+
+  <h3>מבחן המים — הקסם של ה־Float Test</h3>
+  <p>לוקחים <strong>כפית של מחמצת</strong> ומפילים אותה בכוס מים. אם היא <strong>צפה על פני המים</strong> — היא מוכנה לאפייה. אם שוקעת — צריכה עוד זמן או האכלה נוספת. פשוט וגאוני.</p>
+
+  <h3>מבחן העיניים</h3>
+  <p>מסתכלים על הצנצנת מהצד. אם:</p>
+  <ul>
+    <li>היא הכפילה את הנפח מאז ההאכלה האחרונה — מוכנה.</li>
+    <li>יש בועות גדולות וקטנות בכל המבנה — פעילה.</li>
+    <li>הכיפה בחלק העליון שטוחה או שקעה — עברה את השיא, צריכה לאכול לפני שמשתמשים.</li>
+  </ul>
+
+  <h3>מבחן הריח</h3>
+  <p>מחמצת מוכנה מריחה <strong>מתקתק־חמצמץ</strong> כמו יוגורט יווני עם נגיעה של בירה. אם הריח חד מאוד (אצטון) — היא רעבה. אם הריח מתקתק לחלוטין — היא עוד לא בשיא.</p>
+
+  <div class="callout secret">
+    שלב אחד לפני השיא הוא שלב הזהב. הרבה אופים מקצועיים משתמשים במחמצת שעוד לא הגיעה למקסימום — כי יש לה עוד כוח לתת ללחם בזמן התפיחה הארוכה. כשצריך להחליט בין "עכשיו" ל"עוד שעה" — הרבה פעמים "עכשיו" הוא התשובה הנכונה.
+  </div>
+</section>
+
+<!-- ====== 6 ====== -->
+<section id="recipe" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק שישי</div>
+    <h2>המתכון — <em>בלי משקלים</em></h2>
+  </div>
+
+  <p>המתכון הזה עובד כבר אלף שנה. אלפיים. הוא מבוסס על עיקרון אחד פשוט: כל ליטרה של קמח צריכה בערך שני שלישים ליטרה של מים, ומעט מלח. הנה הוא בגרסה ביתית נקייה:</p>
+
+  <div class="ratio" style="background: linear-gradient(135deg, #faf3e7 0%, #f0e4cf 100%); color: var(--ink);">
+    <div>
+      <div class="ratio-num">4</div>
+      <div class="ratio-label">כוסות קמח</div>
+    </div>
+    <div class="ratio-plus">+</div>
+    <div>
+      <div class="ratio-num" style="font-size: 32px;">1½</div>
+      <div class="ratio-label">כוס מים</div>
+    </div>
+    <div class="ratio-plus">+</div>
+    <div>
+      <div class="ratio-num" style="font-size: 32px;">½</div>
+      <div class="ratio-label">כוס מחמצת</div>
+    </div>
+    <div class="ratio-plus">+</div>
+    <div>
+      <div class="ratio-num" style="font-size: 32px;">2</div>
+      <div class="ratio-label">כפיות מלח</div>
+    </div>
+  </div>
+
+  <p>זה מתכון לכיכר אחת בינונית־גדולה. הוא ייתן לך לחם עם פנים רך, קראסט פצוח, וחמיצות עדינה. כל השאר בקורס הזה הוא סביב <strong>איך</strong> מטפלים בבלילה הזו.</p>
+
+  <h3>הקמח — לא כולם שווים</h3>
+  <p>לחם לבן קלאסי: קמח לחם עם אחוז חלבון גבוה (11% ומעלה). הוא יבנה רשת גלוטן חזקה שתחזיק את הבועות.</p>
+  <p>שילוב חיטה מלאה: עד רבע או שליש מהקמח מלא. יותר מזה — הלחם יהיה דחוס. שיפון מלא: טריק להוסיף ריח עמוק וקרמל — מספיק כף או שתיים מהכמות הכוללת.</p>
+
+  <div class="callout tip">
+    <strong>כלל אצבע לאחוזי מים:</strong> בלילה עם יותר מים = פנים פתוח יותר, חורים גדולים, לחם לח וגמיש. בלילה עם פחות מים = מרקם אחיד, חורים קטנים, יותר קל לעבוד איתו. מתחילים עם פחות מים, מוסיפים רק אחרי שכמה אפיות מצליחות.
+  </div>
+
+  <h3>מלח — אחרי ההאכלה</h3>
+  <p>את המלח מוסיפים <strong>רק אחרי שהבצק התאחד</strong> וקיבל כחצי שעה מנוחה (אוטוליזה — נגיע לזה). מלח במגע ישיר עם המחמצת מעכב את השמרים, ולכן נכנס בשלב השני.</p>
+</section>
+
+<!-- ====== 7 ====== -->
+<section id="steps" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק שביעי</div>
+    <h2>שבעת <em>השלבים</em></h2>
+  </div>
+
+  <p>זה הלב של כל הקורס. כל לחם מחמצת שנוצר בעולם עובר את שבעת השלבים האלה. תלמדי אותם טוב — וכבר אין מתכון שתוכלי לפחד ממנו.</p>
+
+  <h3>שלב 1 — אוטוליזה (Autolyse)</h3>
+  <p>המילה הצרפתית הזו אומרת בעצם "לתת לקמח להירטב לבד". מערבבים רק <strong>את הקמח והמים</strong> (בלי מלח ובלי מחמצת) עד שאין גושים יבשים, ומשאירים בשקט במשך חצי שעה עד שעה. בזמן הזה הקמח שואב את המים, אנזימים מתעוררים, והגלוטן מתחיל לבנות את עצמו בלי שעשינו כלום. זה מתנת חינם לבצק.</p>
+
+  <div class="callout senses">
+    בסוף האוטוליזה הבצק מרגיש <strong>חלק יותר, רך יותר, ופחות דביק</strong> מבהתחלה. הוא נראה כמו שהוא כבר התחיל לעבוד בלעדייך.
+  </div>
+
+  <h3>שלב 2 — ערבוב ומלח (Mixing)</h3>
+  <p>עכשיו מוסיפים את המחמצת ואת המלח. חשוב: מלח מעל הבצק ישירות על הגומה, לא לנגוע במחמצת. מערבבים ביד, לוחצים, מוחצים, סוחטים — <strong>לא לשים</strong>. הבצק צריך להתאחד לגוש לח אבל מלוכד. יגזלו 5-7 דקות.</p>
+
+  <h3>שלב 3 — תפיחה ראשונה עם מתיחות וקיפולים (Bulk Fermentation)</h3>
+  <p>זה השלב הכי חשוב בכל הסיפור. במשך 4-6 שעות (תלוי בטמפרטורה), הבצק יתפח בנחת על הדלפק, וכל 30-45 דקות ב־3 שעות הראשונות אנחנו נבצע <strong>מתיחות וקיפולים</strong>.</p>
+
+  <h4>איך עושים מתיחות וקיפולים</h4>
+  <ol class="steps">
+    <li><strong>מרטיבים יד אחת במים</strong> — כדי שהבצק לא יידבק.</li>
+    <li><strong>תופסים את הבצק מהצד</strong>, מותחים אותו למעלה עד שהוא כמעט נקרע.</li>
+    <li><strong>מקפלים מעל עצמו</strong> למרכז הקערה.</li>
+    <li><strong>מסובבים את הקערה רבע סיבוב</strong> וחוזרים על אותה פעולה.</li>
+    <li><strong>4 קיפולים = סט אחד.</strong> עושים סט כזה כל 30-45 דקות, שלוש-ארבע פעמים.</li>
+  </ol>
+
+  <p>אחרי 3 סטים, משאירים את הבצק במנוחה עד לסיום התפיחה. הוא יתפח בנינוחות, ייעשה אוורירי, ויקבל מבנה יפה.</p>
+
+  <div class="callout tip">
+    במקום ללוש בצורה קלאסית, מתיחות וקיפולים בונות גלוטן בעדינות ושומרות על הבועות. זה הסוד לפנים הפתוח והקרוסטה המפצחת.
+  </div>
+
+  <h4>איך יודעים שהתפיחה הראשונה הסתיימה</h4>
+  <p>הבצק גדל ב־50-70%, יש בועות קטנות בפני השטח ובצד הקערה השקופה, הוא נראה מלא חיים. מבחן "הכף הרטובה": תוחבים אצבע בשמן או מים ולוחצים קלות — אם החור חוזר לאט — מוכן. אם החור קופץ מיד — צריך עוד זמן.</p>
+
+  <h3>שלב 4 — עיצוב ראשוני (Preshape)</h3>
+  <p>מרפים את הבצק על הדלפק בעדינות, מגרדים אותו למרכז ובעזרת מגרד בצק מגלגלים אותו לכדור רופף. נותנים לו לנוח <strong>20 דקות בערך</strong>, מכוסה במגבת. הוא צריך להתיישב.</p>
+
+  <h3>שלב 5 — עיצוב סופי (Shape)</h3>
+  <p>הופכים את הכדור, מותחים אותו לריבוע רופף, מקפלים את הצדדים לתוכו (כמו מעטפה), הופכים על התפר, וכיוונים אותו לכדור יפה עם מתח עליון יפה. מניחים בסלסלת תפיחה <strong>עם התפר כלפי מעלה</strong>, מקומחים היטב בקמח אורז (אם יש — הוא הכי פחות דביק).</p>
+
+  <h3>שלב 6 — תפיחה שנייה (Proof)</h3>
+  <p>שתי אפשרויות:</p>
+  <ul>
+    <li><strong>תפיחה חמה.</strong> שעה־שעתיים על הדלפק — לחם עם חמיצות מתונה.</li>
+    <li><strong>תפיחה קרה במקרר.</strong> 8 עד 24 שעות במקרר — לחם עם עומק טעם הרבה יותר גדול.</li>
+  </ul>
+  <p>אני ממליצה בחום על האפשרות השנייה. היא גם נוחה לוגיסטית (אופים בבוקר את מה שעיצבו בערב), וגם נותנת ללחם טעם ועומק שלא תקבלי בשום דרך אחרת.</p>
+
+  <h3>שלב 7 — חריתה ואפייה (Score & Bake)</h3>
+  <p>מחממים תנור ל־250 מעלות עם הסיר בפנים <strong>לפחות 45 דקות</strong>. כן, זמן ארוך. הסיר חייב להיות לוהט. מוציאים את הסיר (זהירות!), הופכים את הבצק לתוך הסיר (התפר עכשיו בתחתית), חורטים בחוזקה עם להב חד — חתך ארוך באלכסון או כמה חתכים מסודרים. שמים את המכסה, מכניסים לתנור.</p>
+
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="timeline-time">0–20 דקות</div>
+      <div class="timeline-what">אפייה <strong>עם מכסה</strong> ב־250 מעלות. הלחות שנפלטת מהבצק נלכדת ועוזרת לו לקפוץ יפה ולקבל ברק.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">20–45 דקות</div>
+      <div class="timeline-what">מורידים את המכסה, מנמיכים ל־230 מעלות. הקרוסטה מתפצחת ומחמיצה לחום מעמיק.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">45 ומעלה</div>
+      <div class="timeline-what">מוציאים כשהלחם <strong>חום עמוק</strong> (כמעט שרוף לטעם ישראלי ממוצע) ודופקים על הבסיס — הוא צריך להישמע חלול, כמו תוף.</div>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <strong>חכו שעה לפני פריסה!</strong> הלחם ממשיך להתבשל כשהוא מתקרר. אם חותכים אותו חם הפנים יהיה רטוב וסמיך. שעת המתנה = מרקם מושלם. אני יודעת, זה הדבר הכי קשה בקורס הזה.
+  </div>
+</section>
+
+<!-- ====== 8 ====== -->
+<section id="aromas" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק שמיני</div>
+    <h2>סודות <em>הריח והטעם</em></h2>
+  </div>
+
+  <p>הדבר שהופך לחם טוב ללחם נהדר הוא השכבות — ניחוחות שמתפתחים בזמן, שכבות של חמיצות, מתיקות נסתרת, ארומות שמתעוררות מהאפייה. הנה הכלים שמאפשרים לך לבחור את הריח של הלחם שלך.</p>
+
+  <div class="flavors">
+    <div class="flavor-card">
+      <h4>תפיחה ארוכה וקרה</h4>
+      <p>יותר מ־12 שעות במקרר מעצימות את החמיצות, יוצרות עומק של "בירה" עדינה וטעם לוואי של אגוזים. זה הטריק היחיד הכי משפיע על הטעם.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>קורטוב שיפון מלא</h4>
+      <p>החלפת 10% מהקמח בשיפון מלא נותנת ללחם ניחוח עמוק של קרמל ואדמה. סוד של מאפיות דניות.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>מחמצת עם שיפון</h4>
+      <p>אם המחמצת שלך מוזנת בשיפון (ולא רק חיטה) — היא מביאה ארומות עמוקות יותר, גם לחמים מחיטה לבנה.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>דבש או סילאן</h4>
+      <p>כפית אחת בבלילה — לא למתיקות, אלא כ"דלק" לשמרים. הריחות שיוצרים מתאדים ומותירים עומק ולא מתיקות.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>השריית דגנים</h4>
+      <p>שעה לפני הערבוב, משרים כף זרעי פשתן, חמניות או דלעת במים חמים. מוסיפים לבצק — טעם קלוי וארומה אגוזית.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>זיתים, רוזמרין, אגוזים</h4>
+      <p>מוסיפים בסוף הקיפול הראשון, כדי שהם יתפזרו יפה. זיתים קלמטה עם רוזמרין טרי הופכים לחם פשוט ללחם חגיגי.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>קמח קלוי</h4>
+      <p>בחתיכת קמח מלא שקולים קלות במחבת יבשה (5 דקות) עד שמתחיל להעיף ריח. מוסיפים חלק מזה לבצק — זה נותן ניחוח שקשה לשכוח.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>מים עם מלט</h4>
+      <p>החלפת חלק מהמים במים של מלט שעורה (לתת) — מאפיות מקצועיות עושות את זה. זה מעצים את הקרוסטה ונותן צבע כהה ופורמלי.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>זרעי קימל או כמון</h4>
+      <p>כפית בבלילה — מעלה את הלחם לעולם הצפון אירופי. מדהים עם חמאה וגבינה צהובה.</p>
+    </div>
+  </div>
+
+  <h3>פילוסופיית הטעם בקצרה</h3>
+  <p>לחם חמצמץ יותר <strong>צריך סביבה קרה יותר</strong> (בקטרית חומצה אצטית אוהבת קור). לחם מעודן יותר <strong>צריך סביבה חמה יותר</strong> (שמרים אוהבים חום). אם תמיד יוצא לך חמוץ מדי — הקטיני את התפיחה הקרה, השתמשי במחמצת יותר פעילה ופחות בשלה. אם תמיד יוצא שטוח מדי — תני יותר זמן.</p>
+
+  <div class="callout secret">
+    המחמצת לא סתם מכפילה את עצמה — היא פועלת כמו חלון. ככל שהחלון (זמן התפיחה) פתוח יותר, נכנסים יותר טעמים. ככל שמקצרים את התהליך — מקבלים לחם תפוח אבל חסר אופי.
+  </div>
+</section>
+
+<!-- ====== 9 ====== -->
+<section id="troubleshoot" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק תשיעי</div>
+    <h2>מה עושים כש<em>זה לא עובד</em></h2>
+  </div>
+
+  <p>כולן עברו את זה. זה חלק מהסיפור. הנה הבעיות הכי שכיחות ומה לעשות בהן:</p>
+
+  <div class="trouble">
+    <div class="trouble-card">
+      <h4>הלחם שטוח ולא תפח כמעט</h4>
+      <p><strong>מה בטח קרה:</strong> המחמצת לא הייתה 
