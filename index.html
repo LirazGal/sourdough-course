@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>קורס לחם מחמצת — מהאם הראשונה ועד הקראסט המושלם</title>
+<title>קורס לחם מחמצת - מהאם הראשונה ועד הקראסט המושלם</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
@@ -56,6 +56,59 @@
     margin: 30px auto 20px;
     display: block;
     filter: drop-shadow(0 10px 30px rgba(139,69,19,0.2));
+  }
+
+  /* Hero photo */
+  .hero-photo-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    margin: 36px auto 24px;
+    padding: 14px 14px 54px;
+    background: var(--flour);
+    border: 1px solid var(--cream-dark);
+    border-radius: 6px;
+    box-shadow: 0 18px 40px rgba(139, 69, 19, 0.22), 0 4px 10px rgba(44, 24, 16, 0.08);
+    transform: rotate(-1.2deg);
+    transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s;
+  }
+  .hero-photo-wrap::before {
+    content: "";
+    position: absolute; top: -8px; left: 50%;
+    width: 90px; height: 22px;
+    background: rgba(212, 165, 116, 0.45);
+    transform: translateX(-50%) rotate(-2deg);
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(139, 69, 19, 0.25);
+  }
+  .hero-photo-wrap::after {
+    content: "- אופים קסם -";
+    position: absolute; bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-style: italic;
+    color: var(--crust);
+    font-size: 16px;
+    letter-spacing: .02em;
+  }
+  .hero-photo-wrap:hover {
+    transform: rotate(0deg) translateY(-4px);
+    box-shadow: 0 26px 60px rgba(139, 69, 19, 0.3), 0 6px 14px rgba(44, 24, 16, 0.12);
+  }
+  .hero-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.03);
+  }
+  .hero-photo-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(ellipse at 50% 40%, rgba(255, 228, 181, 0.55), transparent 65%);
+    z-index: -1;
+    pointer-events: none;
   }
   /* Bread gallery */
   .gallery {
@@ -207,6 +260,14 @@
     transition: border-color 0.15s;
   }
   .toc a:hover { border-color: var(--crust); }
+  .toc a.toc-active {
+    color: var(--crust);
+    font-weight: 700;
+    border-bottom-color: var(--amber);
+    background: linear-gradient(180deg, transparent 65%, rgba(212,165,116,0.2) 65%);
+    padding: 0 2px;
+    transition: all .3s;
+  }
 
   /* Sections */
   section.chapter {
@@ -497,82 +558,239 @@
     .callout, .timeline, .flavor-card { break-inside: avoid; }
     .chapter { break-before: auto; }
   }
+
+  /* ===== Scroll animations ===== */
+  .reveal, .reveal-up, .reveal-right, .reveal-left, .reveal-zoom, .reveal-pop {
+    opacity: 0;
+    transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+    will-change: opacity, transform;
+  }
+  .reveal-up { transform: translateY(32px); }
+  .reveal-right { transform: translateX(32px); }
+  .reveal-left { transform: translateX(-32px); }
+  .reveal-zoom { transform: scale(.94); }
+  .reveal-pop { transform: translateY(20px) scale(.97); }
+
+  .reveal.is-visible,
+  .reveal-up.is-visible,
+  .reveal-right.is-visible,
+  .reveal-left.is-visible,
+  .reveal-zoom.is-visible,
+  .reveal-pop.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Staggered children */
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease-out, transform .7s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal-stagger.is-visible > * { opacity: 1; transform: none; }
+  .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: .05s; }
+  .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: .15s; }
+  .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: .25s; }
+  .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: .35s; }
+  .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: .45s; }
+  .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: .55s; }
+  .reveal-stagger.is-visible > *:nth-child(7) { transition-delay: .65s; }
+  .reveal-stagger.is-visible > *:nth-child(8) { transition-delay: .75s; }
+  .reveal-stagger.is-visible > *:nth-child(9) { transition-delay: .85s; }
+
+  /* Hero entrance */
+  .hero h1 { animation: hero-rise 1.1s cubic-bezier(.2,.8,.2,1) both; }
+  .hero .hero-kicker { animation: hero-kicker-in 1.2s .1s both ease-out; }
+  .hero .lede { animation: hero-fade 1.2s .35s both ease-out; }
+  .hero .byline { animation: hero-fade 1.2s .5s both ease-out; }
+
+  @keyframes hero-rise {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: none; }
+  }
+  @keyframes hero-kicker-in {
+    0% { opacity: 0; letter-spacing: 1em; }
+    100% { opacity: 1; letter-spacing: 0.3em; }
+  }
+  @keyframes hero-fade {
+    0% { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  /* Hero photo "bake in" */
+  .hero-photo-wrap { animation: photo-bake 1.4s .15s both cubic-bezier(.2,.8,.2,1); }
+  @keyframes photo-bake {
+    0% { opacity: 0; transform: rotate(-8deg) scale(.85); filter: saturate(0) brightness(1.3); }
+    60% { filter: saturate(.5) brightness(1.1); }
+    100% { opacity: 1; transform: rotate(-1.2deg); filter: saturate(1.05) brightness(1); }
+  }
+
+  /* Steam animation from the hero */
+  .hero { position: relative; overflow: visible; }
+  .steam {
+    position: absolute;
+    top: 24%;
+    width: 14px; height: 14px;
+    background: radial-gradient(circle, rgba(255,255,255,.85), rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .steam.s1 { left: 44%; animation: steam-rise 4s 1.2s infinite ease-in-out; }
+  .steam.s2 { left: 50%; animation: steam-rise 4.5s 1.8s infinite ease-in-out; }
+  .steam.s3 { left: 56%; animation: steam-rise 5s 2.4s infinite ease-in-out; }
+  @keyframes steam-rise {
+    0% { opacity: 0; transform: translateY(20px) scale(.6); }
+    20% { opacity: .8; }
+    80% { opacity: .2; }
+    100% { opacity: 0; transform: translateY(-90px) scale(1.6); }
+  }
+
+  /* Chapter number pulse on reveal */
+  .chapter.is-visible .chapter-number {
+    animation: num-pop .9s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes num-pop {
+    0% { letter-spacing: 1em; opacity: 0; }
+    100% { letter-spacing: .08em; opacity: 1; }
+  }
+
+  /* Chapter h2 underline drawer */
+  .chapter h2 {
+    position: relative;
+    display: inline-block;
+  }
+  .chapter h2::after {
+    content: "";
+    position: absolute;
+    bottom: -6px; right: 0;
+    height: 3px; width: 0;
+    background: var(--amber);
+    transition: width 1s .25s cubic-bezier(.2,.8,.2,1);
+    border-radius: 2px;
+  }
+  .chapter.is-visible h2::after { width: 60%; }
+
+  /* Bread cards - hover float already; add reveal */
+  .bread-card { transition: transform .3s, box-shadow .3s, opacity .7s ease-out; }
+  .bread-card svg { transition: transform .35s ease-out; }
+  .bread-card:hover svg { transform: scale(1.06) rotate(-2deg); }
+
+  /* Callouts - subtle slide */
+  .callout.reveal-pop.is-visible { animation: callout-bump .55s ease-out; }
+  @keyframes callout-bump {
+    0% { transform: translateY(20px) scale(.97); }
+    60% { transform: translateY(-4px) scale(1.01); }
+    100% { transform: translateY(0) scale(1); }
+  }
+
+  /* Timeline rows stagger inside */
+  .timeline.reveal-stagger > .timeline-row { opacity: 0; transform: translateX(-20px); }
+  .timeline.reveal-stagger.is-visible > .timeline-row { opacity: 1; transform: none; }
+
+  /* Floating flour particles */
+  .flour-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .flour-particles span {
+    position: absolute;
+    display: block;
+    width: 6px; height: 6px;
+    background: rgba(212, 165, 116, 0.35);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: flour-fall linear infinite;
+  }
+  @keyframes flour-fall {
+    0% { transform: translateY(-20px) translateX(0); opacity: 0; }
+    10% { opacity: .6; }
+    90% { opacity: .5; }
+    100% { transform: translateY(105vh) translateX(60px); opacity: 0; }
+  }
+
+  /* Pull-quote fade-in gentle */
+  .pull-quote.reveal-up { transition-duration: 1.2s; }
+  .pull-quote.reveal-up.is-visible { animation: quote-glow 2s ease-out; }
+  @keyframes quote-glow {
+    0%, 100% { box-shadow: 0 0 0 rgba(212, 165, 116, 0); }
+    40% { box-shadow: 0 6px 24px rgba(212, 165, 116, 0.25); }
+  }
+
+  /* Flavor cards tilt on hover */
+  .flavor-card { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+  .flavor-card:hover { transform: translateY(-6px) rotate(-.6deg); box-shadow: 0 14px 28px rgba(139,69,19,0.12); }
+
+  /* Trouble cards slide from alternating sides */
+  .trouble-card.reveal-up:nth-child(odd) { transform: translateX(20px); }
+  .trouble-card.reveal-up:nth-child(even) { transform: translateX(-20px); }
+  .trouble-card.reveal-up.is-visible { transform: none; }
+
+  /* TOC items stagger */
+  .toc.reveal-stagger ol > li { opacity: 0; transform: translateY(10px); transition: opacity .5s, transform .5s cubic-bezier(.2,.8,.2,1); }
+  .toc.reveal-stagger.is-visible ol > li { opacity: 1; transform: none; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(1) { transition-delay: .02s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(2) { transition-delay: .06s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(3) { transition-delay: .1s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(4) { transition-delay: .14s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(5) { transition-delay: .18s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(6) { transition-delay: .22s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(7) { transition-delay: .26s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(8) { transition-delay: .3s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(9) { transition-delay: .34s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(10) { transition-delay: .38s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(11) { transition-delay: .42s; }
+  .toc.reveal-stagger.is-visible ol > li:nth-child(12) { transition-delay: .46s; }
+
+  /* Ratio block - gentle breathing */
+  .ratio { transition: transform .4s; }
+  .ratio.reveal-zoom.is-visible { animation: breathe 6s 1s infinite ease-in-out; }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.015); }
+  }
+
+  /* Respect user's motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-up, .reveal-right, .reveal-left, .reveal-zoom, .reveal-pop,
+    .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+    .hero h1, .hero .hero-kicker, .hero .lede, .hero .byline, .hero-photo-wrap { animation: none !important; }
+    .steam, .flour-particles { display: none !important; }
+    .ratio.reveal-zoom.is-visible { animation: none; }
+  }
 </style>
 </head>
 <body>
+<div class="flour-particles" aria-hidden="true"></div>
 <div class="wrap">
 
 <header class="hero">
-  <div class="hero-kicker">קורס מלא — מתחילות ומתחילים</div>
+  <div class="hero-kicker">קורס מלא - מתחילות ומתחילים</div>
   <h1>הקסם של <em>לחם מחמצת</em></h1>
 
-  <svg class="hero-svg" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="לחם מחמצת קלאסי">
-    <defs>
-      <radialGradient id="crust" cx="42%" cy="30%" r="75%">
-        <stop offset="0%" stop-color="#f4d4a3"/>
-        <stop offset="35%" stop-color="#d4a574"/>
-        <stop offset="65%" stop-color="#a0522d"/>
-        <stop offset="92%" stop-color="#6b3410"/>
-        <stop offset="100%" stop-color="#4a2308"/>
-      </radialGradient>
-      <linearGradient id="earGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#f5deb3"/>
-        <stop offset="60%" stop-color="#c8935c"/>
-        <stop offset="100%" stop-color="#7a4620"/>
-      </linearGradient>
-      <radialGradient id="glow" cx="50%" cy="45%" r="60%">
-        <stop offset="0%" stop-color="#ffe4b5" stop-opacity=".55"/>
-        <stop offset="100%" stop-color="#ffe4b5" stop-opacity="0"/>
-      </radialGradient>
-      <filter id="soft"><feGaussianBlur stdDeviation="1"/></filter>
-    </defs>
-    <rect width="600" height="380" fill="url(#glow)"/>
-    <ellipse cx="300" cy="320" rx="210" ry="16" fill="#4a2308" opacity=".22"/>
-    <path d="M110,195 C110,110 190,70 300,70 C410,70 490,110 490,195 C490,275 410,315 300,315 C190,315 110,275 110,195 Z" fill="url(#crust)"/>
-    <path d="M165,135 Q300,95 435,135 L420,175 Q300,130 180,175 Z" fill="url(#earGrad)" opacity=".95"/>
-    <path d="M165,135 Q300,95 435,135" stroke="#3d1f08" stroke-width="2" fill="none" opacity=".5"/>
-    <path d="M170,210 Q200,200 230,215" stroke="#6b3410" stroke-width="1.5" fill="none" opacity=".4"/>
-    <path d="M370,215 Q400,205 430,220" stroke="#6b3410" stroke-width="1.5" fill="none" opacity=".4"/>
-    <g opacity=".75" filter="url(#soft)">
-      <circle cx="210" cy="115" r="1.8" fill="#fffaf0"/>
-      <circle cx="250" cy="105" r="1.4" fill="#fffaf0"/>
-      <circle cx="290" cy="92" r="2.1" fill="#fffaf0"/>
-      <circle cx="330" cy="100" r="1.5" fill="#fffaf0"/>
-      <circle cx="380" cy="112" r="1.7" fill="#fffaf0"/>
-      <circle cx="235" cy="180" r="1" fill="#fffaf0"/>
-      <circle cx="370" cy="200" r="1.1" fill="#fffaf0"/>
-      <circle cx="290" cy="230" r="1.2" fill="#fffaf0"/>
-      <circle cx="155" cy="205" r="1" fill="#fffaf0"/>
-      <circle cx="420" cy="240" r="1.3" fill="#fffaf0"/>
-    </g>
-    <g transform="translate(75,210) rotate(-18)" opacity=".75">
-      <line x1="0" y1="0" x2="0" y2="85" stroke="#8b6c42" stroke-width="1.5"/>
-      <ellipse cx="-6" cy="15" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="6" cy="25" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="-6" cy="38" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="6" cy="50" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="-5" cy="62" rx="3.5" ry="7" fill="#d4a574"/>
-    </g>
-    <g transform="translate(525,210) rotate(18)" opacity=".75">
-      <line x1="0" y1="0" x2="0" y2="85" stroke="#8b6c42" stroke-width="1.5"/>
-      <ellipse cx="-6" cy="15" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="6" cy="25" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="-6" cy="38" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="6" cy="50" rx="4" ry="8" fill="#d4a574"/>
-      <ellipse cx="-5" cy="62" rx="3.5" ry="7" fill="#d4a574"/>
-    </g>
-  </svg>
+  <span class="steam s1" aria-hidden="true"></span>
+  <span class="steam s2" aria-hidden="true"></span>
+  <span class="steam s3" aria-hidden="true"></span>
+
+  <figure class="hero-photo-wrap reveal-zoom">
+    <img class="hero-photo" src="sourdough-hero.png" alt="כיכר לחם מחמצת על קרש עץ" loading="eager">
+    <div class="hero-photo-glow" aria-hidden="true"></div>
+  </figure>
 
   <p class="lede">אין משקלים. אין לחץ. רק יחסים, חושים, וחבר אחד חי שגר בצנצנת במטבח שלך. בסוף הקורס יהיה לך לחם עם קראסט זהוב, פנים ספוגי, וריח שיעיף את כל השכנים.</p>
-  <div class="byline">מדריך מלא, ידידותי, צעד אחרי צעד — לחם שיעשה קסם.</div>
+  <div class="byline">מדריך מלא, ידידותי, צעד אחרי צעד - לחם שיעשה קסם.</div>
 </header>
 
-<nav class="toc">
+<nav class="toc reveal-stagger">
   <h2>מה בתפריט</h2>
   <ol>
     <li><a href="#intro">מה זה בכלל מחמצת</a></li>
     <li><a href="#gear">הציוד שצריך באמת</a></li>
-    <li><a href="#starter">לידת האֵם — המחמצת שלך</a></li>
+    <li><a href="#starter">לידת האֵם - המחמצת שלך</a></li>
     <li><a href="#feed">להאכיל את התינוקת</a></li>
     <li><a href="#ready">איך יודעים שהיא מוכנה</a></li>
     <li><a href="#recipe">המתכון בלי משקלים</a></li>
@@ -587,7 +805,7 @@
 
 <section class="gallery">
   <h2>משפחת הלחמים</h2>
-  <p class="subtitle">שישה סוגי לחם שתלמדי להכין לאורך הקורס — מהבסיס עד המורכב</p>
+  <p class="subtitle">שישה סוגי לחם שתלמדו להכין לאורך הקורס - מהבסיס עד המורכב</p>
   <div class="bread-grid">
     <div class="bread-card">
       <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
@@ -660,7 +878,7 @@
         <path d="M20,60 Q20,25 60,25 Q100,25 100,60" fill="none" stroke="#8b4513" stroke-width="2"/>
       </svg>
       <h4>חתך רוחב</h4>
-      <p>פנים פתוח — היעד</p>
+      <p>פנים פתוח - היעד</p>
     </div>
   </div>
 </section>
@@ -674,11 +892,11 @@
 
   <p>לחם מחמצת הוא הלחם הכי עתיק בעולם. הוא קדם לשמרים התעשייתיים באלפי שנים, ולמעשה הוא הלחם שבני אדם אפו בכל מקום על הגלובוס לפני שקמה תעשיית האפייה המודרנית. הכוכב בסיפור הזה הוא <strong>שילוב חי של חיידקי חומצת חלב ושמרים פראיים</strong> שחיים בשלום בתוך בלילה של קמח ומים.</p>
 
-  <p>החיידקים מייצרים חומצה לקטית ואצטית — וזה מקור הטעם החמצמץ והעומק. השמרים הפראיים אחראים על גז הפחמן הדו־חמצני שמנפח את הבצק. הפלא האמיתי הוא שכל זה קורה באיטיות, על פני שעות רבות, ובתהליך הזה נוצרים טעמים, ניחוחות וחלבונים חדשים שאי אפשר לקבל בשום דרך אחרת.</p>
+  <p>החיידקים מייצרים חומצה לקטית ואצטית - וזה מקור הטעם החמצמץ והעומק. השמרים הפראיים אחראים על גז הפחמן הדו־חמצני שמנפח את הבצק. הפלא האמיתי הוא שכל זה קורה באיטיות, על פני שעות רבות, ובתהליך הזה נוצרים טעמים, ניחוחות וחלבונים חדשים שאי אפשר לקבל בשום דרך אחרת.</p>
 
   <div class="pull-quote">
-    לחם מחמצת הוא לא מתכון — הוא מערכת יחסים.<br>
-    את לא אופה אותו. את <em>מגדלת</em> אותו.
+    לחם מחמצת הוא לא מתכון - הוא מערכת יחסים.<br>
+    לא אופים אותו. <em>מגדלים</em> אותו.
   </div>
 
   <h3>למה הוא כל כך טעים (באמת)</h3>
@@ -690,7 +908,7 @@
   </ul>
 
   <div class="callout tip">
-    המחמצת לא דורשת ממך להיות מדויקת — היא דורשת ממך להיות <strong>קשובה</strong>. זה ההבדל בין מתכון של מכונה למתכון של בן אדם.
+    המחמצת לא דורשת דיוק - היא דורשת <strong>קשב</strong>. זה ההבדל בין מתכון של מכונה למתכון של בן אדם.
   </div>
 </section>
 
@@ -705,19 +923,19 @@
 
   <h4>ההכרחי באמת</h4>
   <ul>
-    <li><strong>צנצנת זכוכית</strong> בגודל בינוני עם מכסה רופף למחמצת. לא אטומה — המחמצת צריכה לנשום.</li>
+    <li><strong>צנצנת זכוכית</strong> בגודל בינוני עם מכסה רופף למחמצת. לא אטומה - המחמצת צריכה לנשום.</li>
     <li><strong>קערה גדולה</strong> שנותנת לבצק מקום לתפוח פי שניים בלי להישפך.</li>
-    <li><strong>סיר ברזל יצוק או סיר עם מכסה עמיד בחום</strong> — זה הנשק הסודי שהופך תנור ביתי לתנור מאפייה.</li>
+    <li><strong>סיר ברזל יצוק או סיר עם מכסה עמיד בחום</strong> - זה הנשק הסודי שהופך תנור ביתי לתנור מאפייה.</li>
     <li><strong>מגבת פשתן או כותנה נקייה</strong> לכיסוי הבצק.</li>
-    <li><strong>להב חד</strong> לחריתה — סכין ארוך ודק, ז'ילט, או להב יעודי.</li>
-    <li><strong>מדחום בסיסי</strong> — לא חובה, אבל פותר המון חידות בתחילת הדרך.</li>
+    <li><strong>להב חד</strong> לחריתה - סכין ארוך ודק, ז'ילט, או להב יעודי.</li>
+    <li><strong>מדחום בסיסי</strong> - לא חובה, אבל פותר המון חידות בתחילת הדרך.</li>
   </ul>
 
   <h4>נחמד שיהיה</h4>
   <ul>
-    <li>סלסלת תפיחה (בָּנֶטוֹן) או קערה מרופדת במגבת מקומח היטב — כדי לתפוח יפה בצורה.</li>
+    <li>סלסלת תפיחה (בָּנֶטוֹן) או קערה מרופדת במגבת מקומח היטב - כדי לתפוח יפה בצורה.</li>
     <li>מרית סיליקון לערבוב.</li>
-    <li>מגרד בצק מפלסטיק או מתכת — יד שנייה שעוזרת המון.</li>
+    <li>מגרד בצק מפלסטיק או מתכת - יד שנייה שעוזרת המון.</li>
   </ul>
 
   <div class="callout secret">
@@ -732,7 +950,7 @@
     <h2>לידת <em>האֵם</em></h2>
   </div>
 
-  <p>המחמצת שלך תיוולד מקמח, ממים ומאוויר. כן, רק ככה. חיידקי השמרים הפראיים נמצאים בכל מקום סביבנו — על קליפות הפירות, בקמח, באוויר של המטבח שלך. אנחנו רק מזמינים אותם למסיבה עם אוכל ומים.</p>
+  <p>המחמצת שלך תיוולד מקמח, ממים ומאוויר. כן, רק ככה. חיידקי השמרים הפראיים נמצאים בכל מקום סביבנו - על קליפות הפירות, בקמח, באוויר של המטבח שלך. אנחנו רק מזמינים אותם למסיבה עם אוכל ומים.</p>
 
   <svg class="inline-svg" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="צנצנת מחמצת">
     <defs>
@@ -762,7 +980,7 @@
   </svg>
 
 
-  <h3>השבוע הראשון — תהליך הלידה</h3>
+  <h3>השבוע הראשון - תהליך הלידה</h3>
   <p>יוצרים מחמצת חדשה בערך בשבעה ימים. התהליך זהה כל יום: לוקחים מעט מהבלילה של אתמול, מוסיפים מנה שווה של קמח ומנה שווה של מים (ביחס שהולך לחזור על עצמו כל הקורס), מערבבים, סוגרים בצנצנת ומחכים.</p>
 
   <div class="ratio">
@@ -785,19 +1003,19 @@
   <p>מה זה אומר בלי משקלים? כל פעם שלוקחים <em>כף</em> מחמצת, מוסיפים <em>כף</em> קמח ו<em>כף</em> מים. פשוט ככה. היחס חשוב, לא הכמות המוחלטת.</p>
 
   <ol class="steps">
-    <li><strong>יום 1 — הזיווג הראשון.</strong> בצנצנת נקייה, מערבבים שתי כפות קמח מלא ושתי כפות מים פושרים. הבלילה צריכה להיראות כמו דייסה סמיכה. סוגרים ברופף ומשאירים בפינה חמימה ונעימה (לא שמש ישירה).</li>
-    <li><strong>יום 2 — ממתינים.</strong> אולי יופיעו בועות קטנות. אולי לא. לא לדאוג, היא רק מתעוררת.</li>
-    <li><strong>יום 3 — ההאכלה הראשונה.</strong> זורקים חצי מהצנצנת, מוסיפים שוב שתי כפות קמח ושתי כפות מים. מערבבים, סוגרים, וממתינים. כבר מתחיל להריח חמוץ.</li>
-    <li><strong>יום 4 — חיים אמיתיים.</strong> בועות יותר, ריח יותר חזק, אולי קצת חמצמץ. להמשיך להאכיל פעם ביום באותו יחס.</li>
-    <li><strong>יום 5 עד 7 — התייצבות.</strong> המחמצת מתחילה להכפיל את הנפח שלה אחרי האכלה, הריח מתאזן והבועות צפופות ורגילות.</li>
+    <li><strong>יום 1 - הזיווג הראשון.</strong> בצנצנת נקייה, מערבבים שתי כפות קמח מלא ושתי כפות מים פושרים. הבלילה צריכה להיראות כמו דייסה סמיכה. סוגרים ברופף ומשאירים בפינה חמימה ונעימה (לא שמש ישירה).</li>
+    <li><strong>יום 2 - ממתינים.</strong> אולי יופיעו בועות קטנות. אולי לא. לא לדאוג, היא רק מתעוררת.</li>
+    <li><strong>יום 3 - ההאכלה הראשונה.</strong> זורקים חצי מהצנצנת, מוסיפים שוב שתי כפות קמח ושתי כפות מים. מערבבים, סוגרים, וממתינים. כבר מתחיל להריח חמוץ.</li>
+    <li><strong>יום 4 - חיים אמיתיים.</strong> בועות יותר, ריח יותר חזק, אולי קצת חמצמץ. להמשיך להאכיל פעם ביום באותו יחס.</li>
+    <li><strong>יום 5 עד 7 - התייצבות.</strong> המחמצת מתחילה להכפיל את הנפח שלה אחרי האכלה, הריח מתאזן והבועות צפופות ורגילות.</li>
   </ol>
 
   <div class="callout warning">
-    ביום 3-4 לפעמים יש ריח מוזר שמזכיר גרב. זה נורמלי לגמרי — החיידקים הטובים עוד לא השתלטו. עוד יום-יומיים והריח יתאזן לחמצמץ נעים.
+    ביום 3-4 לפעמים יש ריח מוזר שמזכיר גרב. זה נורמלי לגמרי - החיידקים הטובים עוד לא השתלטו. עוד יום-יומיים והריח יתאזן לחמצמץ נעים.
   </div>
 
-  <h3>קמח — מה בוחרים</h3>
-  <p>אפשר להתחיל מכל קמח. אבל הגרעינים המלאים (שיפון, חיטה מלאה) מלאים במיקרואורגניזמים ומסיעים את התהליך קדימה בקלות. טריק קלאסי: להתחיל מ<strong>קמח שיפון מלא</strong> לכמה ימים, ואז להעביר את המחמצת בהדרגה לקמח חיטה לבן. זה כמו להדליק מדורה — שיפון הוא הנייר המקומט, חיטה היא הגזרים היציבים.</p>
+  <h3>קמח - מה בוחרים</h3>
+  <p>אפשר להתחיל מכל קמח. אבל הגרעינים המלאים (שיפון, חיטה מלאה) מלאים במיקרואורגניזמים ומסיעים את התהליך קדימה בקלות. טריק קלאסי: להתחיל מ<strong>קמח שיפון מלא</strong> לכמה ימים, ואז להעביר את המחמצת בהדרגה לקמח חיטה לבן. זה כמו להדליק מדורה - שיפון הוא הנייר המקומט, חיטה היא הגזרים היציבים.</p>
 </section>
 
 <!-- ====== 4 ====== -->
@@ -807,27 +1025,27 @@
     <h2>להאכיל את <em>התינוקת</em></h2>
   </div>
 
-  <p>המחמצת היא יצור חי. כמו חתול — אי אפשר להכניס אותה למגירה ולשכוח. אבל בניגוד לחתול, אפשר להכניס אותה למקרר ולהאכיל פעם בשבוע. היא סלחנית מאוד.</p>
+  <p>המחמצת היא יצור חי. כמו חתול - אי אפשר להכניס אותה למגירה ולשכוח. אבל בניגוד לחתול, אפשר להכניס אותה למקרר ולהאכיל פעם בשבוע. היא סלחנית מאוד.</p>
 
   <h3>שתי מצבים: פעילה או רדומה</h3>
   <p><strong>פעילה</strong> = על הדלפק. צריך להאכיל פעם ביום עד פעמיים ביום. היא תהיה עירנית, מבעבעת, וכפולה בנפח תוך כמה שעות מהאכלה.</p>
-  <p><strong>רדומה</strong> = במקרר. מספיק להאכיל פעם בשבוע. היא בתרדמת חורף — חיה אבל שוקטת.</p>
+  <p><strong>רדומה</strong> = במקרר. מספיק להאכיל פעם בשבוע. היא בתרדמת חורף - חיה אבל שוקטת.</p>
 
-  <h3>יחס ההאכלה — הלב של הקורס</h3>
-  <p>היחס הקלאסי הוא <strong>1:1:1</strong> — חלק אחד מחמצת קיימת, חלק אחד קמח, חלק אחד מים. אם יש לנו יותר זמן (או שרוצים טעם יותר עדין), אפשר לעבור ל<strong>1:2:2</strong> או אפילו <strong>1:5:5</strong> — פחות מחמצת יחסית, יותר אוכל חדש, תפיחה איטית יותר.</p>
+  <h3>יחס ההאכלה - הלב של הקורס</h3>
+  <p>היחס הקלאסי הוא <strong>1:1:1</strong> - חלק אחד מחמצת קיימת, חלק אחד קמח, חלק אחד מים. אם יש לנו יותר זמן (או שרוצים טעם יותר עדין), אפשר לעבור ל<strong>1:2:2</strong> או אפילו <strong>1:5:5</strong> - פחות מחמצת יחסית, יותר אוכל חדש, תפיחה איטית יותר.</p>
 
   <div class="callout tip">
-    <strong>טריק הזריקה:</strong> לפני כל האכלה זורקים את רוב המחמצת ומשאירים רק מעט. זה נשמע בזבוז, אבל אם לא עושים את זה — הכמות מתפוצצת והחיידקים רעבים. את הנזרק אפשר לאפות לקרקרים, לפנקייק, או לבלילה של חביתיות.
+    <strong>טריק הזריקה:</strong> לפני כל האכלה זורקים את רוב המחמצת ומשאירים רק מעט. זה נשמע בזבוז, אבל אם לא עושים את זה - הכמות מתפוצצת והחיידקים רעבים. את הנזרק אפשר לאפות לקרקרים, לפנקייק, או לבלילה של חביתיות.
   </div>
 
-  <h3>מים — עניין של פה</h3>
-  <p>אם מי הברז אצלך מכילים כלור חזק — עדיף להשאיר כוס מים על הדלפק לכמה שעות לפני ההאכלה. הכלור מתנדף, והחיידקים מודים לך. מים ממסננת או מי ברז שעמדו לילה גם מצוינים.</p>
+  <h3>מים - עניין של פה</h3>
+  <p>אם מי הברז אצלך מכילים כלור חזק - עדיף להשאיר כוס מים על הדלפק לכמה שעות לפני ההאכלה. הכלור מתנדף, והחיידקים מודים לך. מים ממסננת או מי ברז שעמדו לילה גם מצוינים.</p>
 
-  <h3>טמפרטורה — השחקנית הסמויה</h3>
-  <p>במטבח חמים (מעל 24 מעלות) המחמצת תרוץ מהר. במטבח קריר (מתחת 20) היא תהיה עצלה. אם יש לך תנור עם אור — אור התנור הדלוק יוצר סביבה חמימה ומושלמת של כ־25 מעלות. זה טריק מצוין בחורף.</p>
+  <h3>טמפרטורה - השחקנית הסמויה</h3>
+  <p>במטבח חמים (מעל 24 מעלות) המחמצת תרוץ מהר. במטבח קריר (מתחת 20) היא תהיה עצלה. אם יש לך תנור עם אור - אור התנור הדלוק יוצר סביבה חמימה ומושלמת של כ־25 מעלות. זה טריק מצוין בחורף.</p>
 
   <div class="callout senses">
-    מחמצת בריאה מריחה כמו <strong>יוגורט עם נגיעה של אלכוהול ופירות</strong>. אם היא מריחה כמו אצטון חריף — היא רעבה מאוד (האכילי אותה בדחיפות). אם היא מריחה כמו ריקבון — קרה משהו לא טוב וכדאי להתחיל מחדש.
+    מחמצת בריאה מריחה כמו <strong>יוגורט עם נגיעה של אלכוהול ופירות</strong>. אם היא מריחה כמו אצטון חריף - היא רעבה מאוד (להאכיל אותה בדחיפות). אם היא מריחה כמו ריקבון - קרה משהו לא טוב וכדאי להתחיל מחדש.
   </div>
 </section>
 
@@ -838,24 +1056,24 @@
     <h2>איך יודעים שהיא <em>מוכנה</em> לאפייה</h2>
   </div>
 
-  <p>הטעות הכי נפוצה של אופות מתחילות היא להשתמש במחמצת במצב הלא נכון. שמרן פראי זה לא כמו שמרים תעשייתיים — יש לו רגעי שיא ואם מפספסים אותם הלחם יוצא דחוס או שטוח.</p>
+  <p>הטעות הכי נפוצה של אופים מתחילים היא להשתמש במחמצת במצב הלא נכון. שמרן פראי זה לא כמו שמרים תעשייתיים - יש לו רגעי שיא ואם מפספסים אותם הלחם יוצא דחוס או שטוח.</p>
 
-  <h3>מבחן המים — הקסם של ה־Float Test</h3>
-  <p>לוקחים <strong>כפית של מחמצת</strong> ומפילים אותה בכוס מים. אם היא <strong>צפה על פני המים</strong> — היא מוכנה לאפייה. אם שוקעת — צריכה עוד זמן או האכלה נוספת. פשוט וגאוני.</p>
+  <h3>מבחן המים - הקסם של ה־Float Test</h3>
+  <p>לוקחים <strong>כפית של מחמצת</strong> ומפילים אותה בכוס מים. אם היא <strong>צפה על פני המים</strong> - היא מוכנה לאפייה. אם שוקעת - צריכה עוד זמן או האכלה נוספת. פשוט וגאוני.</p>
 
   <h3>מבחן העיניים</h3>
   <p>מסתכלים על הצנצנת מהצד. אם:</p>
   <ul>
-    <li>היא הכפילה את הנפח מאז ההאכלה האחרונה — מוכנה.</li>
-    <li>יש בועות גדולות וקטנות בכל המבנה — פעילה.</li>
-    <li>הכיפה בחלק העליון שטוחה או שקעה — עברה את השיא, צריכה לאכול לפני שמשתמשים.</li>
+    <li>היא הכפילה את הנפח מאז ההאכלה האחרונה - מוכנה.</li>
+    <li>יש בועות גדולות וקטנות בכל המבנה - פעילה.</li>
+    <li>הכיפה בחלק העליון שטוחה או שקעה - עברה את השיא, צריכה לאכול לפני שמשתמשים.</li>
   </ul>
 
   <h3>מבחן הריח</h3>
-  <p>מחמצת מוכנה מריחה <strong>מתקתק־חמצמץ</strong> כמו יוגורט יווני עם נגיעה של בירה. אם הריח חד מאוד (אצטון) — היא רעבה. אם הריח מתקתק לחלוטין — היא עוד לא בשיא.</p>
+  <p>מחמצת מוכנה מריחה <strong>מתקתק־חמצמץ</strong> כמו יוגורט יווני עם נגיעה של בירה. אם הריח חד מאוד (אצטון) - היא רעבה. אם הריח מתקתק לחלוטין - היא עוד לא בשיא.</p>
 
   <div class="callout secret">
-    שלב אחד לפני השיא הוא שלב הזהב. הרבה אופים מקצועיים משתמשים במחמצת שעוד לא הגיעה למקסימום — כי יש לה עוד כוח לתת ללחם בזמן התפיחה הארוכה. כשצריך להחליט בין "עכשיו" ל"עוד שעה" — הרבה פעמים "עכשיו" הוא התשובה הנכונה.
+    שלב אחד לפני השיא הוא שלב הזהב. הרבה אופים מקצועיים משתמשים במחמצת שעוד לא הגיעה למקסימום - כי יש לה עוד כוח לתת ללחם בזמן התפיחה הארוכה. כשצריך להחליט בין "עכשיו" ל"עוד שעה" - הרבה פעמים "עכשיו" הוא התשובה הנכונה.
   </div>
 </section>
 
@@ -863,7 +1081,7 @@
 <section id="recipe" class="chapter">
   <div class="chapter-header">
     <div class="chapter-number">פרק שישי</div>
-    <h2>המתכון — <em>בלי משקלים</em></h2>
+    <h2>המתכון - <em>בלי משקלים</em></h2>
   </div>
 
   <p>המתכון הזה עובד כבר אלף שנה. אלפיים. הוא מבוסס על עיקרון אחד פשוט: כל ליטרה של קמח צריכה בערך שני שלישים ליטרה של מים, ומעט מלח. הנה הוא בגרסה ביתית נקייה:</p>
@@ -892,16 +1110,16 @@
 
   <p>זה מתכון לכיכר אחת בינונית־גדולה. הוא ייתן לך לחם עם פנים רך, קראסט פצוח, וחמיצות עדינה. כל השאר בקורס הזה הוא סביב <strong>איך</strong> מטפלים בבלילה הזו.</p>
 
-  <h3>הקמח — לא כולם שווים</h3>
+  <h3>הקמח - לא כולם שווים</h3>
   <p>לחם לבן קלאסי: קמח לחם עם אחוז חלבון גבוה (11% ומעלה). הוא יבנה רשת גלוטן חזקה שתחזיק את הבועות.</p>
-  <p>שילוב חיטה מלאה: עד רבע או שליש מהקמח מלא. יותר מזה — הלחם יהיה דחוס. שיפון מלא: טריק להוסיף ריח עמוק וקרמל — מספיק כף או שתיים מהכמות הכוללת.</p>
+  <p>שילוב חיטה מלאה: עד רבע או שליש מהקמח מלא. יותר מזה - הלחם יהיה דחוס. שיפון מלא: טריק להוסיף ריח עמוק וקרמל - מספיק כף או שתיים מהכמות הכוללת.</p>
 
   <div class="callout tip">
     <strong>כלל אצבע לאחוזי מים:</strong> בלילה עם יותר מים = פנים פתוח יותר, חורים גדולים, לחם לח וגמיש. בלילה עם פחות מים = מרקם אחיד, חורים קטנים, יותר קל לעבוד איתו. מתחילים עם פחות מים, מוסיפים רק אחרי שכמה אפיות מצליחות.
   </div>
 
-  <h3>מלח — אחרי ההאכלה</h3>
-  <p>את המלח מוסיפים <strong>רק אחרי שהבצק התאחד</strong> וקיבל כחצי שעה מנוחה (אוטוליזה — נגיע לזה). מלח במגע ישיר עם המחמצת מעכב את השמרים, ולכן נכנס בשלב השני.</p>
+  <h3>מלח - אחרי ההאכלה</h3>
+  <p>את המלח מוסיפים <strong>רק אחרי שהבצק התאחד</strong> וקיבל כחצי שעה מנוחה (אוטוליזה - נגיע לזה). מלח במגע ישיר עם המחמצת מעכב את השמרים, ולכן נכנס בשלב השני.</p>
 </section>
 
 <!-- ====== 7 ====== -->
@@ -911,24 +1129,24 @@
     <h2>שבעת <em>השלבים</em></h2>
   </div>
 
-  <p>זה הלב של כל הקורס. כל לחם מחמצת שנוצר בעולם עובר את שבעת השלבים האלה. תלמדי אותם טוב — וכבר אין מתכון שתוכלי לפחד ממנו.</p>
+  <p>זה הלב של כל הקורס. כל לחם מחמצת שנוצר בעולם עובר את שבעת השלבים האלה. תלמדו אותם טוב - וכבר אין מתכון שתוכלו לפחד ממנו.</p>
 
-  <h3>שלב 1 — אוטוליזה (Autolyse)</h3>
+  <h3>שלב 1 - אוטוליזה (Autolyse)</h3>
   <p>המילה הצרפתית הזו אומרת בעצם "לתת לקמח להירטב לבד". מערבבים רק <strong>את הקמח והמים</strong> (בלי מלח ובלי מחמצת) עד שאין גושים יבשים, ומשאירים בשקט במשך חצי שעה עד שעה. בזמן הזה הקמח שואב את המים, אנזימים מתעוררים, והגלוטן מתחיל לבנות את עצמו בלי שעשינו כלום. זה מתנת חינם לבצק.</p>
 
   <div class="callout senses">
     בסוף האוטוליזה הבצק מרגיש <strong>חלק יותר, רך יותר, ופחות דביק</strong> מבהתחלה. הוא נראה כמו שהוא כבר התחיל לעבוד בלעדייך.
   </div>
 
-  <h3>שלב 2 — ערבוב ומלח (Mixing)</h3>
-  <p>עכשיו מוסיפים את המחמצת ואת המלח. חשוב: מלח מעל הבצק ישירות על הגומה, לא לנגוע במחמצת. מערבבים ביד, לוחצים, מוחצים, סוחטים — <strong>לא לשים</strong>. הבצק צריך להתאחד לגוש לח אבל מלוכד. יגזלו 5-7 דקות.</p>
+  <h3>שלב 2 - ערבוב ומלח (Mixing)</h3>
+  <p>עכשיו מוסיפים את המחמצת ואת המלח. חשוב: מלח מעל הבצק ישירות על הגומה, לא לנגוע במחמצת. מערבבים ביד, לוחצים, מוחצים, סוחטים - <strong>לא לשים</strong>. הבצק צריך להתאחד לגוש לח אבל מלוכד. יגזלו 5-7 דקות.</p>
 
-  <h3>שלב 3 — תפיחה ראשונה עם מתיחות וקיפולים (Bulk Fermentation)</h3>
+  <h3>שלב 3 - תפיחה ראשונה עם מתיחות וקיפולים (Bulk Fermentation)</h3>
   <p>זה השלב הכי חשוב בכל הסיפור. במשך 4-6 שעות (תלוי בטמפרטורה), הבצק יתפח בנחת על הדלפק, וכל 30-45 דקות ב־3 שעות הראשונות אנחנו נבצע <strong>מתיחות וקיפולים</strong>.</p>
 
   <h4>איך עושים מתיחות וקיפולים</h4>
   <ol class="steps">
-    <li><strong>מרטיבים יד אחת במים</strong> — כדי שהבצק לא יידבק.</li>
+    <li><strong>מרטיבים יד אחת במים</strong> - כדי שהבצק לא יידבק.</li>
     <li><strong>תופסים את הבצק מהצד</strong>, מותחים אותו למעלה עד שהוא כמעט נקרע.</li>
     <li><strong>מקפלים מעל עצמו</strong> למרכז הקערה.</li>
     <li><strong>מסובבים את הקערה רבע סיבוב</strong> וחוזרים על אותה פעולה.</li>
@@ -942,24 +1160,24 @@
   </div>
 
   <h4>איך יודעים שהתפיחה הראשונה הסתיימה</h4>
-  <p>הבצק גדל ב־50-70%, יש בועות קטנות בפני השטח ובצד הקערה השקופה, הוא נראה מלא חיים. מבחן "הכף הרטובה": תוחבים אצבע בשמן או מים ולוחצים קלות — אם החור חוזר לאט — מוכן. אם החור קופץ מיד — צריך עוד זמן.</p>
+  <p>הבצק גדל ב־50-70%, יש בועות קטנות בפני השטח ובצד הקערה השקופה, הוא נראה מלא חיים. מבחן "הכף הרטובה": תוחבים אצבע בשמן או מים ולוחצים קלות - אם החור חוזר לאט - מוכן. אם החור קופץ מיד - צריך עוד זמן.</p>
 
-  <h3>שלב 4 — עיצוב ראשוני (Preshape)</h3>
+  <h3>שלב 4 - עיצוב ראשוני (Preshape)</h3>
   <p>מרפים את הבצק על הדלפק בעדינות, מגרדים אותו למרכז ובעזרת מגרד בצק מגלגלים אותו לכדור רופף. נותנים לו לנוח <strong>20 דקות בערך</strong>, מכוסה במגבת. הוא צריך להתיישב.</p>
 
-  <h3>שלב 5 — עיצוב סופי (Shape)</h3>
-  <p>הופכים את הכדור, מותחים אותו לריבוע רופף, מקפלים את הצדדים לתוכו (כמו מעטפה), הופכים על התפר, וכיוונים אותו לכדור יפה עם מתח עליון יפה. מניחים בסלסלת תפיחה <strong>עם התפר כלפי מעלה</strong>, מקומחים היטב בקמח אורז (אם יש — הוא הכי פחות דביק).</p>
+  <h3>שלב 5 - עיצוב סופי (Shape)</h3>
+  <p>הופכים את הכדור, מותחים אותו לריבוע רופף, מקפלים את הצדדים לתוכו (כמו מעטפה), הופכים על התפר, וכיוונים אותו לכדור יפה עם מתח עליון יפה. מניחים בסלסלת תפיחה <strong>עם התפר כלפי מעלה</strong>, מקומחים היטב בקמח אורז (אם יש - הוא הכי פחות דביק).</p>
 
-  <h3>שלב 6 — תפיחה שנייה (Proof)</h3>
+  <h3>שלב 6 - תפיחה שנייה (Proof)</h3>
   <p>שתי אפשרויות:</p>
   <ul>
-    <li><strong>תפיחה חמה.</strong> שעה־שעתיים על הדלפק — לחם עם חמיצות מתונה.</li>
-    <li><strong>תפיחה קרה במקרר.</strong> 8 עד 24 שעות במקרר — לחם עם עומק טעם הרבה יותר גדול.</li>
+    <li><strong>תפיחה חמה.</strong> שעה־שעתיים על הדלפק - לחם עם חמיצות מתונה.</li>
+    <li><strong>תפיחה קרה במקרר.</strong> 8 עד 24 שעות במקרר - לחם עם עומק טעם הרבה יותר גדול.</li>
   </ul>
-  <p>אני ממליצה בחום על האפשרות השנייה. היא גם נוחה לוגיסטית (אופים בבוקר את מה שעיצבו בערב), וגם נותנת ללחם טעם ועומק שלא תקבלי בשום דרך אחרת.</p>
+  <p>מומלץ בחום ללכת על האפשרות השנייה. היא גם נוחה לוגיסטית (אופים בבוקר את מה שעיצבו בערב), וגם נותנת ללחם טעם ועומק שאי אפשר לקבל בשום דרך אחרת.</p>
 
-  <h3>שלב 7 — חריתה ואפייה (Score & Bake)</h3>
-  <p>מחממים תנור ל־250 מעלות עם הסיר בפנים <strong>לפחות 45 דקות</strong>. כן, זמן ארוך. הסיר חייב להיות לוהט. מוציאים את הסיר (זהירות!), הופכים את הבצק לתוך הסיר (התפר עכשיו בתחתית), חורטים בחוזקה עם להב חד — חתך ארוך באלכסון או כמה חתכים מסודרים. שמים את המכסה, מכניסים לתנור.</p>
+  <h3>שלב 7 - חריתה ואפייה (Score & Bake)</h3>
+  <p>מחממים תנור ל־250 מעלות עם הסיר בפנים <strong>לפחות 45 דקות</strong>. כן, זמן ארוך. הסיר חייב להיות לוהט. מוציאים את הסיר (זהירות!), הופכים את הבצק לתוך הסיר (התפר עכשיו בתחתית), חורטים בחוזקה עם להב חד - חתך ארוך באלכסון או כמה חתכים מסודרים. שמים את המכסה, מכניסים לתנור.</p>
 
   <div class="timeline">
     <div class="timeline-row">
@@ -972,12 +1190,12 @@
     </div>
     <div class="timeline-row">
       <div class="timeline-time">45 ומעלה</div>
-      <div class="timeline-what">מוציאים כשהלחם <strong>חום עמוק</strong> (כמעט שרוף לטעם ישראלי ממוצע) ודופקים על הבסיס — הוא צריך להישמע חלול, כמו תוף.</div>
+      <div class="timeline-what">מוציאים כשהלחם <strong>חום עמוק</strong> (כמעט שרוף לטעם ישראלי ממוצע) ודופקים על הבסיס - הוא צריך להישמע חלול, כמו תוף.</div>
     </div>
   </div>
 
   <div class="callout warning">
-    <strong>חכו שעה לפני פריסה!</strong> הלחם ממשיך להתבשל כשהוא מתקרר. אם חותכים אותו חם הפנים יהיה רטוב וסמיך. שעת המתנה = מרקם מושלם. אני יודעת, זה הדבר הכי קשה בקורס הזה.
+    <strong>חכו שעה לפני פריסה!</strong> הלחם ממשיך להתבשל כשהוא מתקרר. אם חותכים אותו חם הפנים יהיה רטוב וסמיך. שעת המתנה = מרקם מושלם. כן, זה הדבר הכי קשה בקורס הזה.
   </div>
 </section>
 
@@ -988,7 +1206,7 @@
     <h2>סודות <em>הריח והטעם</em></h2>
   </div>
 
-  <p>הדבר שהופך לחם טוב ללחם נהדר הוא השכבות — ניחוחות שמתפתחים בזמן, שכבות של חמיצות, מתיקות נסתרת, ארומות שמתעוררות מהאפייה. הנה הכלים שמאפשרים לך לבחור את הריח של הלחם שלך.</p>
+  <p>הדבר שהופך לחם טוב ללחם נהדר הוא השכבות - ניחוחות שמתפתחים בזמן, שכבות של חמיצות, מתיקות נסתרת, ארומות שמתעוררות מהאפייה. הנה הכלים שמאפשרים לך לבחור את הריח של הלחם שלך.</p>
 
   <div class="flavors">
     <div class="flavor-card">
@@ -1001,15 +1219,15 @@
     </div>
     <div class="flavor-card">
       <h4>מחמצת עם שיפון</h4>
-      <p>אם המחמצת שלך מוזנת בשיפון (ולא רק חיטה) — היא מביאה ארומות עמוקות יותר, גם לחמים מחיטה לבנה.</p>
+      <p>אם המחמצת שלך מוזנת בשיפון (ולא רק חיטה) - היא מביאה ארומות עמוקות יותר, גם לחמים מחיטה לבנה.</p>
     </div>
     <div class="flavor-card">
       <h4>דבש או סילאן</h4>
-      <p>כפית אחת בבלילה — לא למתיקות, אלא כ"דלק" לשמרים. הריחות שיוצרים מתאדים ומותירים עומק ולא מתיקות.</p>
+      <p>כפית אחת בבלילה - לא למתיקות, אלא כ"דלק" לשמרים. הריחות שיוצרים מתאדים ומותירים עומק ולא מתיקות.</p>
     </div>
     <div class="flavor-card">
       <h4>השריית דגנים</h4>
-      <p>שעה לפני הערבוב, משרים כף זרעי פשתן, חמניות או דלעת במים חמים. מוסיפים לבצק — טעם קלוי וארומה אגוזית.</p>
+      <p>שעה לפני הערבוב, משרים כף זרעי פשתן, חמניות או דלעת במים חמים. מוסיפים לבצק - טעם קלוי וארומה אגוזית.</p>
     </div>
     <div class="flavor-card">
       <h4>זיתים, רוזמרין, אגוזים</h4>
@@ -1017,23 +1235,23 @@
     </div>
     <div class="flavor-card">
       <h4>קמח קלוי</h4>
-      <p>בחתיכת קמח מלא שקולים קלות במחבת יבשה (5 דקות) עד שמתחיל להעיף ריח. מוסיפים חלק מזה לבצק — זה נותן ניחוח שקשה לשכוח.</p>
+      <p>בחתיכת קמח מלא שקולים קלות במחבת יבשה (5 דקות) עד שמתחיל להעיף ריח. מוסיפים חלק מזה לבצק - זה נותן ניחוח שקשה לשכוח.</p>
     </div>
     <div class="flavor-card">
       <h4>מים עם מלט</h4>
-      <p>החלפת חלק מהמים במים של מלט שעורה (לתת) — מאפיות מקצועיות עושות את זה. זה מעצים את הקרוסטה ונותן צבע כהה ופורמלי.</p>
+      <p>החלפת חלק מהמים במים של מלט שעורה (לתת) - מאפיות מקצועיות עושות את זה. זה מעצים את הקרוסטה ונותן צבע כהה ופורמלי.</p>
     </div>
     <div class="flavor-card">
       <h4>זרעי קימל או כמון</h4>
-      <p>כפית בבלילה — מעלה את הלחם לעולם הצפון אירופי. מדהים עם חמאה וגבינה צהובה.</p>
+      <p>כפית בבלילה - מעלה את הלחם לעולם הצפון אירופי. מדהים עם חמאה וגבינה צהובה.</p>
     </div>
   </div>
 
   <h3>פילוסופיית הטעם בקצרה</h3>
-  <p>לחם חמצמץ יותר <strong>צריך סביבה קרה יותר</strong> (בקטרית חומצה אצטית אוהבת קור). לחם מעודן יותר <strong>צריך סביבה חמה יותר</strong> (שמרים אוהבים חום). אם תמיד יוצא לך חמוץ מדי — הקטיני את התפיחה הקרה, השתמשי במחמצת יותר פעילה ופחות בשלה. אם תמיד יוצא שטוח מדי — תני יותר זמן.</p>
+  <p>לחם חמצמץ יותר <strong>צריך סביבה קרה יותר</strong> (בקטרית חומצה אצטית אוהבת קור). לחם מעודן יותר <strong>צריך סביבה חמה יותר</strong> (שמרים אוהבים חום). אם תמיד יוצא חמוץ מדי - כדאי לקצר את התפיחה הקרה, להשתמש במחמצת יותר פעילה ופחות בשלה. אם תמיד יוצא שטוח מדי - לתת יותר זמן.</p>
 
   <div class="callout secret">
-    המחמצת לא סתם מכפילה את עצמה — היא פועלת כמו חלון. ככל שהחלון (זמן התפיחה) פתוח יותר, נכנסים יותר טעמים. ככל שמקצרים את התהליך — מקבלים לחם תפוח אבל חסר אופי.
+    המחמצת לא סתם מכפילה את עצמה - היא פועלת כמו חלון. ככל שהחלון (זמן התפיחה) פתוח יותר, נכנסים יותר טעמים. ככל שמקצרים את התהליך - מקבלים לחם תפוח אבל חסר אופי.
   </div>
 </section>
 
@@ -1044,9 +1262,647 @@
     <h2>מה עושים כש<em>זה לא עובד</em></h2>
   </div>
 
-  <p>כולן עברו את זה. זה חלק מהסיפור. הנה הבעיות הכי שכיחות ומה לעשות בהן:</p>
+  <p>כולם עברו את זה. זה חלק מהסיפור. הנה הבעיות הכי שכיחות ומה לעשות בהן:</p>
 
   <div class="trouble">
     <div class="trouble-card">
       <h4>הלחם שטוח ולא תפח כמעט</h4>
-      <p><strong>מה בטח קרה:</strong> המחמצת לא הייתה 
+      <p><strong>מה בטח קרה:</strong> המחמצת לא הייתה בשיא, או שהתפיחה הראשונה הייתה קצרה מדי.</p>
+      <p><strong>מה לעשות:</strong> לוודא שהמחמצת עוברת את ה־Float Test, לתת לתפיחה הראשונה 4-6 שעות עם 3 סטים של מתיחות וקיפולים, ולנסות תפיחה שנייה במקרר.</p>
+    </div>
+    <div class="trouble-card">
+      <h4>הלחם חמוץ מדי</h4>
+      <p><strong>מה בטח קרה:</strong> התפיחה הקרה הייתה ארוכה מדי, או שהמחמצת הייתה בשלה מדי בשימוש.</p>
+      <p><strong>מה לעשות:</strong> לקצר את התפיחה הקרה ל-8-10 שעות, ולהשתמש במחמצת בשיא הפעילות (ולא אחרי שעברה את הפיק).</p>
+    </div>
+    <div class="trouble-card">
+      <h4>הקראסט בהיר ורך במקום פצוח</h4>
+      <p><strong>מה בטח קרה:</strong> הסיר לא היה לוהט מספיק, או שהמכסה הוסר מוקדם.</p>
+      <p><strong>מה לעשות:</strong> לחמם את הסיר 45 דקות ב־250°, לאפות 20 דקות עם מכסה, ורק אז להסיר ולהמשיך ב־230°.</p>
+    </div>
+    <div class="trouble-card">
+      <h4>הפנים דחוס וגומי</h4>
+      <p><strong>מה בטח קרה:</strong> תפיחה לא מספקת, או שחתכתם את הלחם חם מדי.</p>
+      <p><strong>מה לעשות:</strong> לתת יותר זמן בתפיחה הראשונה, ולחכות שעה מלאה לאחר האפייה לפני פריסה.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 10 ====== -->
+<section id="pro" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק עשירי</div>
+    <h2>טריקים של <em>מקצוענים</em></h2>
+  </div>
+
+  <p>אחרי חמש-עשר אפיות מצליחות, מתחילים להרגיש את הבצק. אלה הטריקים הקטנים שמבדילים בין לחם נחמד לבין לחם שאפשר לפתוח איתו מאפייה. שום אחד מהם לא חובה. כולם ביחד - מהפכה.</p>
+
+  <div class="flavors">
+    <div class="flavor-card">
+      <h4>קמח אורז לסלסלה</h4>
+      <p>במקום קמח חיטה לקמח הסלסלה, השתמשו בקמח אורז. הוא לא סופג מים והבצק נשלף בקלות בלי להידבק. מה שאופים מקצועיים עושים.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>מבחן החלון (Windowpane)</h4>
+      <p>אחרי 2 סטים של קיפולים, מותחים פיסה קטנה של בצק בעדינות. אם היא נמתחת לממברנה דקה שאפשר לראות דרכה אור - הגלוטן מוכן. אם נקרעת מוקדם, עוד סט.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>קוביות קרח באפייה</h4>
+      <p>אם אין לכם סיר מכוסה, שימו מגש תחתון בתנור, ורגע לפני שמכניסים את הלחם - זרקו 5 קוביות קרח למגש. האדים מדמים את הסיר ונותנים קראסט פריך.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>הקפאה לאחר העיצוב</h4>
+      <p>אחרי עיצוב סופי, אפשר להקפיא את הבצק בסלסלה. ביום האפייה להוציא למקרר לשעתיים ואז ישר לתנור. לחם טרי בדרישה.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>חריתה באצבע אחת</h4>
+      <p>להב אחד, תנועה אחת, זווית 30 מעלות. עומק של 5-7 מ"מ, לא יותר. הלחם ייפתח בדיוק איפה שהנחיתם את הקו.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>מחמצת נוזלית מול נוקשה</h4>
+      <p>מחמצת ביחס 1:5:5 (נוזלית) = חמיצות עדינה. ביחס 1:1:1 (נוקשה) = עוצמה וכוח הרמה. שימו לב ממה הכי נהנים.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>בניית מתח עליון</h4>
+      <p>בעיצוב הסופי, מסתכלים איך הבצק "מותח את עורו" כלפי מעלה. בצק עם מתח טוב יקפוץ יפה בתנור. בצק רופף יישאר שטוח.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>טמפרטורת הבצק</h4>
+      <p>24-26° בתחילת התפיחה הראשונה זה אופטימום. יותר חם - מתקצרים הזמנים, פחות חמוץ. יותר קר - מתארכים, יותר עומק.</p>
+    </div>
+    <div class="flavor-card">
+      <h4>ניטור עם שעון בצק</h4>
+      <p>שמים חתיכת בצק קטנה בצנצנת שקופה צמודה לקערה הראשית. רואים ישירות כמה הוא עלה באחוזים. אופים מקצועיים משתמשים בזה.</p>
+    </div>
+  </div>
+
+  <div class="callout secret">
+    הסוד הכי גדול: <strong>אופה רעב הוא אופה רע.</strong> אל תעיזו להתחיל אפייה כשאתם עייפים או לחוצים. לחם דורש נוכחות. כשאתם שקטים - הבצק שקט. כשאתם אצים - הבצק מרגיש וחושב להיעלב.
+  </div>
+</section>
+
+<!-- ====== 11 ====== -->
+<section id="schedule" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק אחד-עשר</div>
+    <h2>לוח זמנים <em>מוצע</em></h2>
+  </div>
+
+  <p>השאלה הכי נפוצה אחרי "איזה קמח" היא "מתי מתחילים?". הנה לוח זמנים ריאלי לאדם שעובד, יש לו משפחה, ורוצה לחם טרי לסוף השבוע. 48 שעות סך הכל, רוב הזמן הבצק עובד לבד.</p>
+
+  <h3>יום חמישי בערב - מכינים את המחמצת</h3>
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="timeline-time">20:00</div>
+      <div class="timeline-what">מוציאים את המחמצת מהמקרר. מאכילים ביחס 1:2:2 (כפית מחמצת + 2 כפות קמח + 2 כפות מים). משאירים על הדלפק לילה.</div>
+    </div>
+  </div>
+
+  <h3>יום שישי - יום הבצק</h3>
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-what">בודקים שהמחמצת צפה במבחן ה-Float. מערבבים <strong>קמח ומים</strong> לאוטוליזה. מנוחה של שעה.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-what">מוסיפים מחמצת ומלח. מערבבים ידנית 5-7 דקות. הבצק מתאחד.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">09:30</div>
+      <div class="timeline-what">סט ראשון של מתיחות וקיפולים.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">10:00 / 10:45</div>
+      <div class="timeline-what">סט שני ושלישי. אחרי זה הבצק בשקט.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">13:00-14:00</div>
+      <div class="timeline-what">סוף תפיחה ראשונה. עיצוב ראשוני + 20 דקות מנוחה. עיצוב סופי. הבצק נכנס לסלסלה.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">14:30</div>
+      <div class="timeline-what">הסלסלה נכנסת למקרר. לילה ארוך של תפיחה קרה.</div>
+    </div>
+  </div>
+
+  <h3>יום שבת - יום האפייה</h3>
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="timeline-time">08:15</div>
+      <div class="timeline-what">מדליקים תנור על 250° עם הסיר בפנים. 45 דקות חימום.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-what">מוציאים את הבצק מהמקרר. הופכים לסיר הלוהט. חורטים. סוגרים מכסה. תנור.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">09:20</div>
+      <div class="timeline-what">מסירים מכסה. מנמיכים ל-230°.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">09:45</div>
+      <div class="timeline-what">מוציאים את הלחם. מצלצלים על הבסיס לוודא שהוא חלול. מניחים על רשת.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-time">10:45</div>
+      <div class="timeline-what"><strong>פורסים.</strong> ארוחת בוקר. המתנה של שעה הייתה שווה את זה.</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>גרסה קצרה (יום אחד):</strong> 7:00 האכלה, 12:00 אוטוליזה, 13:00 ערבוב, 13:30-16:30 קיפולים ותפיחה, 17:00 עיצוב + 2 שעות תפיחה שנייה חמה, 19:00 אפייה, 20:00 פריסה. יוצא טעים פחות, אבל עובד.
+  </div>
+</section>
+
+<!-- ====== 12 ====== -->
+<section id="philosophy" class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-number">פרק שנים-עשר</div>
+    <h2>הפילוסופיה של <em>הלחם</em></h2>
+  </div>
+
+  <p>הגענו לסוף, ועוד לא דיברנו על הדבר הכי חשוב. למה בכלל? בעולם שבו אפשר לקנות לחם בפינה בשקלים בודדים, למה להשקיע 48 שעות ולבלבל את הראש עם חיידקים פראיים ומבחני צפייה?</p>
+
+  <div class="pull-quote">
+    לחם מחמצת הוא האנטיתזה לכל דבר מהיר, נוח ואוטומטי.<br>
+    הוא הזמנה לחיות באיטיות, לשים לב, ולהיות פה.
+  </div>
+
+  <h3>איטיות כחוויה</h3>
+  <p>כל פעולה בקורס הזה מאטה אותך. אוטוליזה של שעה כשאפשר פשוט לערבב הכל. תפיחה של לילה שלם כשאפשר להשתמש בשמרים תעשייתיים ולסיים תוך שעתיים. זה לא באג - זה הפיצ'ר. זה הזמן שבו הטעמים נבנים, אבל גם הזמן שבו אנחנו נבנים: עם הסבלנות, עם הקשב, עם היכולת לחכות.</p>
+
+  <h3>חיידקים כמורה רוחני</h3>
+  <p>למחמצת לא אכפת מהלוח זמנים שלכם. היא לא עובדת במשמרות. היא תגיב לטמפרטורה במטבח, לאיכות הקמח, למצב הרוח של החיידקים. אפשר להילחם בזה - או ללמוד לקרוא אותה. מי שהולך בדרך השנייה, לומד משהו נדיר: להתאים את עצמו למציאות, ולא להיפך.</p>
+
+  <h3>הכישלון כחלק מהסיפור</h3>
+  <p>יהיו לכם לחמים שטוחים. חמוצים מדי. שרופים מלמטה. סוגרים על עצמם כמו כדור. זה לא אומר שלא למדתם - זה אומר שלמדתם. כל כיכר פגומה מלמדת משהו שכיכר מושלמת לא הייתה מלמדת. צלמו אותן. שמרו אותן בראש. הן היסודות של הלחמים המדהימים שיבואו.</p>
+
+  <div class="callout senses">
+    <strong>הפרדוקס של לחם מחמצת:</strong> ככל שאת פחות נשלטת על ידי הרצון לשליטה מוחלטת, ככה הלחם יוצא יותר טוב. המחמצת מלמדת אותנו להרפות.
+  </div>
+
+  <h3>מערכת יחסים אמיתית</h3>
+  <p>מחמצת יכולה לחיות עשרות שנים. מעבירים אותה מדור לדור. יש מחמצות מפורסמות שבמאפיות בצרפת הן בנות 150 שנה. כשמתחילים מחמצת משל עצמם, מתחילים חיים חדשים - של יצור קטן שתלוי בכם. האכילו אותה. הקשיבו לה. היא תחזיר לכם באופן שאי אפשר להסביר במילים.</p>
+
+  <h3>וסיום קטן</h3>
+  <p>הקורס הזה נגמר פה, אבל הלחם שלכם רק מתחיל. כל כיכר תהיה שונה. כל עונה תביא משהו חדש. לפעמים תאפו שלושה לחמים בשבוע ותשכחו שאפשר לחיות בלי זה. לפעמים תזניחו את המחמצת לחודש ותמצאו אותה עצובה במקרר. שום דבר מזה לא קריטי. זה הסיפור שלכם. תודה שהייתם חלק ממנו. עכשיו - לכו לאפות.</p>
+
+  <div class="pull-quote">
+    הלחם הכי טוב <em>שתאפו בחייכם</em><br>
+    הוא זה שעוד לא אפיתם.
+  </div>
+</section>
+
+<!-- ====== Chatbot Widget ====== -->
+<div id="sd-chat" dir="rtl" aria-live="polite">
+  <button id="sd-chat-toggle" aria-label="פתיחת בוט המחמצת" type="button">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span class="sd-chat-badge">שאלה על מחמצת?</span>
+  </button>
+
+  <div id="sd-chat-panel" role="dialog" aria-label="בוט המחמצת" hidden>
+    <div class="sd-chat-header">
+      <div class="sd-chat-title">
+        <div class="sd-chat-avatar" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="36" height="36"><ellipse cx="20" cy="22" rx="15" ry="10" fill="#d4a574"/><ellipse cx="20" cy="20" rx="15" ry="10" fill="#e8c896"/><path d="M8 18 Q20 8 32 18" stroke="#8b4513" stroke-width="1.5" fill="none" opacity=".5"/><circle cx="14" cy="20" r="1.5" fill="#8b4513" opacity=".4"/><circle cx="22" cy="18" r="1.2" fill="#8b4513" opacity=".4"/><circle cx="26" cy="22" r="1" fill="#8b4513" opacity=".4"/></svg>
+        </div>
+        <div>
+          <div class="sd-chat-name">בוט המחמצת</div>
+          <div class="sd-chat-status">כאן לכל שאלה על מחמצת</div>
+        </div>
+      </div>
+      <button id="sd-chat-close" aria-label="סגירה" type="button">×</button>
+    </div>
+
+    <div id="sd-chat-messages" role="log"></div>
+
+    <div id="sd-chat-suggestions"></div>
+
+    <form id="sd-chat-form" autocomplete="off">
+      <input id="sd-chat-input" type="text" placeholder="שאלה על מחמצת…" maxlength="250" aria-label="הקלידו שאלה">
+      <button type="submit" aria-label="שליחה">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="sd-chat-foot">התשובות מבוססות על תוכן הקורס ⋅ לא תחליף לניסיון אישי</div>
+  </div>
+</div>
+
+<style>
+  #sd-chat { position: fixed; bottom: 24px; left: 24px; z-index: 9999; font-family: 'Assistant', system-ui, sans-serif; direction: rtl; }
+  #sd-chat-toggle { display: flex; align-items: center; gap: 10px; background: var(--crust); color: var(--flour); border: none; border-radius: 999px; padding: 14px 20px 14px 18px; box-shadow: 0 10px 30px rgba(139,69,19,0.35); cursor: pointer; font-size: 16px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
+  #sd-chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(139,69,19,0.45); }
+  #sd-chat-toggle.sd-open { background: var(--ink); }
+  .sd-chat-badge { font-size: 14px; letter-spacing: .02em; }
+
+  #sd-chat-panel { position: absolute; bottom: 76px; left: 0; width: min(380px, calc(100vw - 32px)); height: min(560px, calc(100vh - 140px)); background: var(--flour); border-radius: 18px; box-shadow: 0 24px 60px rgba(44,24,16,0.25); display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--cream-dark); animation: sd-pop .22s ease-out; }
+  #sd-chat-panel[hidden] { display: none !important; }
+  @keyframes sd-pop { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  .sd-chat-header { background: linear-gradient(135deg, var(--crust) 0%, var(--crust-light) 100%); color: var(--flour); padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; }
+  .sd-chat-title { display: flex; align-items: center; gap: 12px; }
+  .sd-chat-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--flour); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .sd-chat-name { font-family: 'Frank Ruhl Libre', serif; font-size: 18px; font-weight: 700; }
+  .sd-chat-status { font-size: 12px; opacity: .9; }
+  #sd-chat-close { background: transparent; border: none; color: var(--flour); font-size: 28px; line-height: 1; cursor: pointer; padding: 0 6px; }
+  #sd-chat-close:hover { opacity: .8; }
+
+  #sd-chat-messages { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: var(--cream); }
+  #sd-chat-messages::-webkit-scrollbar { width: 6px; }
+  #sd-chat-messages::-webkit-scrollbar-thumb { background: var(--amber-soft); border-radius: 3px; }
+
+  .sd-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 15px; line-height: 1.55; word-wrap: break-word; }
+  .sd-msg.bot { background: var(--flour); color: var(--ink); border: 1px solid var(--cream-dark); align-self: flex-start; border-bottom-right-radius: 4px; }
+  .sd-msg.user { background: var(--crust); color: var(--flour); align-self: flex-end; border-bottom-left-radius: 4px; }
+  .sd-msg strong { color: var(--crust); }
+  .sd-msg.user strong { color: var(--amber-soft); }
+  .sd-msg .sd-source { display: inline-block; margin-top: 8px; font-size: 12px; color: var(--ink-soft); font-style: italic; }
+  .sd-msg.bot a { color: var(--crust); }
+
+  .sd-typing { display: inline-flex; gap: 4px; padding: 12px 14px; }
+  .sd-typing span { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; animation: sd-bounce 1.2s infinite; }
+  .sd-typing span:nth-child(2) { animation-delay: .15s; }
+  .sd-typing span:nth-child(3) { animation-delay: .3s; }
+  @keyframes sd-bounce { 0%,60%,100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-5px); opacity: 1; } }
+
+  #sd-chat-suggestions { padding: 10px 14px 4px; display: flex; gap: 6px; flex-wrap: wrap; background: var(--cream); border-top: 1px solid var(--cream-dark); }
+  .sd-suggestion { background: var(--flour); border: 1px solid var(--cream-dark); color: var(--ink-soft); padding: 6px 12px; border-radius: 999px; font-size: 13px; cursor: pointer; font-family: inherit; transition: all .15s; }
+  .sd-suggestion:hover { background: var(--amber-soft); color: var(--ink); border-color: var(--amber); }
+
+  #sd-chat-form { display: flex; gap: 8px; padding: 12px 14px; background: var(--flour); border-top: 1px solid var(--cream-dark); }
+  #sd-chat-input { flex: 1; border: 1px solid var(--cream-dark); border-radius: 999px; padding: 10px 16px; font-family: inherit; font-size: 15px; outline: none; direction: rtl; background: var(--cream); color: var(--ink); }
+  #sd-chat-input:focus { border-color: var(--amber); background: var(--flour); }
+  #sd-chat-form button { background: var(--crust); color: var(--flour); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+  #sd-chat-form button:hover { background: var(--crust-light); }
+  #sd-chat-form button svg { transform: scaleX(-1); }
+
+  .sd-chat-foot { text-align: center; padding: 6px 10px 8px; font-size: 11px; color: var(--ink-soft); background: var(--flour); }
+
+  @media (max-width: 480px) {
+    #sd-chat { bottom: 16px; left: 16px; right: 16px; }
+    #sd-chat-panel { width: calc(100vw - 32px); height: min(520px, calc(100vh - 120px)); left: 0; right: 0; }
+    #sd-chat-toggle .sd-chat-badge { display: none; }
+    #sd-chat-toggle { padding: 14px; }
+  }
+</style>
+
+<script>
+// ===== אנימציות חיות על גלילה =====
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // תיוג אוטומטי של אלמנטים למחלקות reveal
+  function autoTag() {
+    document.querySelectorAll('.chapter').forEach(el => {
+      el.classList.add('reveal-up');
+    });
+    document.querySelectorAll('.pull-quote').forEach(el => el.classList.add('reveal-up'));
+    document.querySelectorAll('.callout').forEach(el => el.classList.add('reveal-pop'));
+    document.querySelectorAll('.ratio').forEach(el => el.classList.add('reveal-zoom'));
+    document.querySelectorAll('.timeline').forEach(el => el.classList.add('reveal-stagger'));
+    document.querySelectorAll('.bread-grid').forEach(el => el.classList.add('reveal-stagger'));
+    document.querySelectorAll('.flavors').forEach(el => el.classList.add('reveal-stagger'));
+    document.querySelectorAll('.trouble').forEach(el => el.classList.add('reveal-stagger'));
+    document.querySelectorAll('.trouble-card').forEach(el => el.classList.add('reveal-up'));
+    document.querySelectorAll('.gallery').forEach(el => el.classList.add('reveal-up'));
+    // כותרות ופסקאות בתוך פרקים
+    document.querySelectorAll('.chapter h3, .chapter h4').forEach(el => el.classList.add('reveal-up'));
+  }
+
+  function setupObserver() {
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: הכל נראה
+      document.querySelectorAll('[class*="reveal"]').forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // לא להפסיק לעקוב אחרי אלמנטים עם אנימציה רציפה (ratio)
+          if (!entry.target.classList.contains('ratio')) {
+            io.unobserve(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-up, .reveal-right, .reveal-left, .reveal-zoom, .reveal-pop, .reveal-stagger')
+      .forEach(el => io.observe(el));
+  }
+
+  // גלילה רכה לעוגנים בתפריט
+  function setupSmoothLinks() {
+    document.querySelectorAll('.toc a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        const tgt = document.querySelector(id);
+        if (tgt) {
+          e.preventDefault();
+          tgt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', id);
+        }
+      });
+    });
+  }
+
+  // חלקיקי קמח צפים
+  function spawnFlour() {
+    if (prefersReduced) return;
+    const wrap = document.querySelector('.flour-particles');
+    if (!wrap) return;
+    const count = 14;
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('span');
+      const size = 3 + Math.random() * 6;
+      dot.style.width = size + 'px';
+      dot.style.height = size + 'px';
+      dot.style.left = (Math.random() * 100) + 'vw';
+      dot.style.top = (-Math.random() * 30) + 'vh';
+      dot.style.animationDuration = (14 + Math.random() * 16) + 's';
+      dot.style.animationDelay = (Math.random() * 20) + 's';
+      dot.style.opacity = (0.3 + Math.random() * 0.4);
+      wrap.appendChild(dot);
+    }
+  }
+
+  // כותרת h2 עם אפקט חיתוך בצק (מבטל אחרי הופעה)
+  function kneadChapterTitles() {
+    document.querySelectorAll('.chapter h2').forEach(h2 => {
+      if (h2.dataset.kneaded) return;
+      h2.dataset.kneaded = '1';
+    });
+  }
+
+  // אנימציה של גלגלת פרק פעיל בתפריט (על בסיס גלילה)
+  function setupActiveTocHighlight() {
+    const tocLinks = Array.from(document.querySelectorAll('.toc a[href^="#"]'));
+    if (tocLinks.length === 0) return;
+    const map = new Map();
+    tocLinks.forEach(a => {
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) map.set(el, a);
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const a = map.get(entry.target);
+        if (!a) return;
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('toc-active'));
+          a.classList.add('toc-active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    map.forEach((_a, el) => io.observe(el));
+  }
+
+  // אתחול
+  function init() {
+    autoTag();
+    setupObserver();
+    setupSmoothLinks();
+    spawnFlour();
+    kneadChapterTitles();
+    setupActiveTocHighlight();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<script>
+(function(){
+  // בסיס ידע מבוסס תוכן הקורס
+  const kb = [
+    { id: 'ready', section: 'פרק חמישי - איך יודעים שהיא מוכנה', link: '#ready',
+      keywords: ['מוכנה','מוכן','מוכנת','float','צפה','צפייה','כפית','כוס מים','בשיא','לאפות','להשתמש','שיא','פעילה','להתחיל לאפות'],
+      answer: 'יש שלושה מבחנים קצרים:<br><br><strong>1. מבחן ה־Float:</strong> כפית מחמצת בכוס מים. צפה = מוכנה. שוקעת = צריכה עוד זמן או האכלה.<br><strong>2. מבחן העיניים:</strong> הכפילה את הנפח מההאכלה האחרונה, עם בועות גדולות וקטנות בכל המבנה.<br><strong>3. מבחן הריח:</strong> מתקתק־חמצמץ כמו יוגורט יווני עם נגיעה של בירה.<br><br>לשים לב: אם הכיפה שקעה או שטוחה - עברה את השיא וצריכה האכלה לפני שימוש.'
+    },
+    { id: 'create', section: 'פרק שלישי - לידת האֵם', link: '#starter',
+      keywords: ['ליצור','יצירה','מאפס','להכין מחמצת','התחלה','חדשה','לידה','מחמצת ראשונה','בלי מחמצת','איך מכינים'],
+      answer: '7 ימים, תהליך רגוע:<br><br><strong>יום 1:</strong> 2 כפות קמח מלא + 2 כפות מים פושרים בצנצנת. מערבבים לדייסה סמיכה, מכסים ברופף.<br><strong>יום 2:</strong> ממתינים. אולי בועות קטנות, אולי לא.<br><strong>יום 3:</strong> זורקים חצי + 2 כפות קמח + 2 כפות מים חדשים.<br><strong>יום 4:</strong> בועות יותר, ריח חמצמץ. האכלה יומית.<br><strong>ימים 5-7:</strong> מתחילה להכפיל את הנפח אחרי האכלה - מוכנה!<br><br><em>טיפ:</em> להתחיל עם שיפון מלא ואז לעבור בהדרגה לחיטה לבן.'
+    },
+    { id: 'flat', section: 'פרק תשיעי - פתרון בעיות', link: '#troubleshoot',
+      keywords: ['שטוח','לא תפח','לא תפיחה','דחוס','לא עלה','שטוחה','לא קפץ'],
+      answer: '<strong>מה בטח קרה:</strong> המחמצת לא הייתה בשיא הפעילות, או שהתפיחה הראשונה הייתה קצרה מדי.<br><br><strong>מה לעשות:</strong><br>• לוודא שהמחמצת עוברת את ה־Float Test לפני שמשתמשים.<br>• לתת לתפיחה הראשונה 4-6 שעות עם 3 סטים של מתיחות וקיפולים.<br>• לנסות תפיחה שנייה קרה במקרר - היא גם נותנת כוח וגם עומק טעם.'
+    },
+    { id: 'gear', section: 'פרק שני - הציוד שצריך', link: '#gear',
+      keywords: ['ציוד','כלים','לקנות','צריך','מה צריך','סיר','קערה','בנטון','להב','ז\'ילט','סלסלה'],
+      answer: '<strong>ההכרחי באמת:</strong><br>• צנצנת זכוכית עם מכסה רופף.<br>• קערה גדולה שהבצק יתפח בה פי שניים.<br>• <strong>סיר ברזל יצוק עם מכסה</strong> - הנשק הסודי לקראסט מקצועי.<br>• מגבת פשתן/כותנה נקייה.<br>• להב חד (סכין ארוך, ז\'ילט, או להב ייעודי).<br>• מדחום בסיסי (לא חובה).<br><br><strong>נחמד שיהיה:</strong> סלסלת בָּנֶטוֹן, מרית סיליקון, מגרד בצק.'
+    },
+    { id: 'autolyse', section: 'פרק שביעי - שלב 1', link: '#steps',
+      keywords: ['אוטוליזה','autolyse','חצי שעה','רטיבה','לרטוב','גושים'],
+      answer: '<strong>אוטוליזה</strong> = לתת לקמח להירטב לבד. מערבבים רק <strong>קמח ומים</strong> (בלי מלח, בלי מחמצת) עד שאין גושים יבשים, ומשאירים חצי שעה עד שעה.<br><br>בזמן הזה הקמח שואב מים, אנזימים מתעוררים, והגלוטן מתחיל לבנות את עצמו בלי מאמץ. בסוף התהליך הבצק <em>חלק יותר, רך יותר ופחות דביק</em>. מתנת חינם.'
+    },
+    { id: 'salt', section: 'פרק שישי - המתכון', link: '#recipe',
+      keywords: ['מלח','כפיות מלח','מתי מוסיפים','מעכב'],
+      answer: 'את המלח מוסיפים <strong>רק אחרי האוטוליזה</strong> - כשהבצק כבר התאחד וקיבל חצי שעה מנוחה.<br><br><strong>למה?</strong> מלח במגע ישיר עם המחמצת מעכב את השמרים. לכן מוסיפים אותו בשלב השני, מעל הבצק על גומה, בלי לגעת ישירות במחמצת.<br><br>כמות: <strong>2 כפיות</strong> מלח ל-4 כוסות קמח.'
+    },
+    { id: 'recipe', section: 'פרק שישי - המתכון', link: '#recipe',
+      keywords: ['מתכון','כמה מים','כמה קמח','יחס','יחסים','מידות','כוסות','ליטרה','כיכר'],
+      answer: 'המתכון - <strong>בלי משקלים</strong> - לכיכר אחת בינונית-גדולה:<br><br>• <strong>4 כוסות קמח</strong><br>• <strong>1½ כוס מים</strong><br>• <strong>½ כוס מחמצת</strong><br>• <strong>2 כפיות מלח</strong><br><br><em>כלל אצבע:</em> יותר מים = פנים פתוח עם חורים גדולים. פחות מים = מרקם אחיד וקל יותר לעבודה. כדאי להתחיל עם פחות מים, ולהוסיף אחרי כמה אפיות מצליחות.'
+    },
+    { id: 'folds', section: 'פרק שביעי - שלב 3', link: '#steps',
+      keywords: ['מתיחות','קיפולים','stretch','fold','מתיחה','לקפל'],
+      answer: '<strong>מתיחות וקיפולים</strong> - כל 30-45 דקות ב-3 שעות הראשונות של התפיחה הראשונה:<br><br>1. מרטיבים יד אחת במים.<br>2. תופסים את הבצק מהצד ומותחים למעלה עד כמעט נקרע.<br>3. מקפלים מעל עצמו למרכז.<br>4. מסובבים רבע סיבוב וחוזרים.<br><br><strong>4 קיפולים = סט אחד.</strong> עושים 3-4 סטים, ואז נותנים מנוחה עד סוף התפיחה. זה בונה גלוטן בעדינות ושומר על הבועות.'
+    },
+    { id: 'bulk', section: 'פרק שביעי - שלב 3', link: '#steps',
+      keywords: ['תפיחה ראשונה','bulk','ראשונה','תפיחה','fermentation','להתפיח','תפח','כמה זמן תפיחה'],
+      answer: '<strong>תפיחה ראשונה:</strong> 4-6 שעות על הדלפק (תלוי בטמפרטורה).<br><br>איך יודעים שסיימה?<br>• הבצק גדל ב-50-70%.<br>• בועות קטנות בפני השטח ובצד הקערה.<br>• נראה מלא חיים.<br>• <strong>מבחן הכף הרטובה:</strong> תוחבים אצבע רטובה ולוחצים. החור חוזר לאט = מוכן. קופץ מיד = עוד זמן.'
+    },
+    { id: 'proof', section: 'פרק שביעי - שלב 6', link: '#steps',
+      keywords: ['תפיחה שנייה','תפיחה שניה','proof','פרוף','מקרר','קרה','חמה','לילה'],
+      answer: 'שתי אפשרויות:<br><br><strong>תפיחה חמה:</strong> שעה-שעתיים על הדלפק → חמיצות מתונה.<br><strong>תפיחה קרה במקרר:</strong> 8-24 שעות → עומק טעם הרבה יותר גדול.<br><br>מומלץ מאוד ללכת על האפשרות השנייה - נוחה לוגיסטית (אופים בבוקר את מה שעיצבו בערב) ונותנת ללחם טעם שאי אפשר להגיע אליו אחרת.'
+    },
+    { id: 'bake', section: 'פרק שביעי - שלב 7', link: '#steps',
+      keywords: ['אופים','אפייה','תנור','טמפרטורה','מעלות','250','230','כמה זמן אפייה','סיר לוהט'],
+      answer: '<strong>האפייה - בסיר:</strong><br><br>• מחממים ל-<strong>250°</strong> עם הסיר בפנים <strong>45 דקות לפחות</strong>.<br>• <strong>0-20 דקות:</strong> אפייה עם מכסה ב-250°.<br>• <strong>20-45 דקות:</strong> מורידים מכסה, מנמיכים ל-230°.<br>• <strong>45 ומעלה:</strong> מוציאים כשהלחם חום עמוק ודופקים על הבסיס - צריך להישמע חלול כמו תוף.'
+    },
+    { id: 'cooling', section: 'פרק שביעי - אחרי האפייה', link: '#steps',
+      keywords: ['לחתוך','לפרוס','פריסה','חיתוך','לחכות','התקררות','חמה','רטוב','סמיך'],
+      answer: '<strong>חכו שעה לפני פריסה!</strong><br><br>הלחם ממשיך להתבשל כשהוא מתקרר. אם חותכים חם - הפנים יהיה רטוב וסמיך. שעת המתנה = מרקם מושלם.<br><br>כן, זה החלק הכי קשה בקורס הזה.'
+    },
+    { id: 'feed', section: 'פרק רביעי - להאכיל', link: '#feed',
+      keywords: ['להאכיל','מאכיל','מאכילה','מאכילים','האכלה','לאכול','1:1:1','יחס האכלה','כמה פעמים','במקרר','בדלפק','רדומה','פעילה'],
+      answer: '<strong>היחס הקלאסי - 1:1:1</strong>: חלק מחמצת + חלק קמח + חלק מים.<br><br>• <strong>פעילה על הדלפק:</strong> פעם ביום (עד פעמיים).<br>• <strong>רדומה במקרר:</strong> פעם בשבוע.<br><br><strong>טריק הזריקה:</strong> לפני כל האכלה זורקים את רוב המחמצת ומשאירים רק מעט. אחרת הכמות מתפוצצת והחיידקים רעבים. את הנזרק אפשר לאפות לקרקרים, פנקייק או חביתיות.'
+    },
+    { id: 'smell', section: 'פרק רביעי - טמפרטורה וריח', link: '#feed',
+      keywords: ['ריח','מריחה','אצטון','מסריח','מוזר','גרב','רקוב','יוגורט','אלכוהול'],
+      answer: 'מה הריח אומר:<br><br>• <strong>יוגורט + נגיעה של אלכוהול ופירות</strong> = בריאה ומאושרת.<br>• <strong>אצטון חריף</strong> = רעבה מאוד. להאכיל בדחיפות.<br>• <strong>ריקבון / ריח רקוב</strong> = קרה משהו לא טוב. כדאי להתחיל מחדש.<br>• <strong>ריח כמו גרב (ביום 3-4 של יצירה חדשה)</strong> = נורמלי לגמרי. עוד יום-יומיים והריח יתאזן.'
+    },
+    { id: 'flour', section: 'פרק שישי - הקמח', link: '#recipe',
+      keywords: ['קמח','איזה קמח','חיטה מלאה','שיפון','לבן','חלבון','קמח לחם'],
+      answer: '<strong>לְיצירת מחמצת חדשה:</strong> כדאי להתחיל משיפון מלא - הוא מלא במיקרואורגניזמים ומסיע את התהליך קדימה. אחרי שהמחמצת פעילה, אפשר לעבור בהדרגה לחיטה לבן.<br><br><strong>ללחם:</strong><br>• קמח לחם עם <strong>11%+ חלבון</strong> לבסיס.<br>• עד רבע-שליש חיטה מלאה (יותר מזה = דחוס).<br>• כף-שתיים שיפון מלא = ריח עמוק וקרמל.'
+    },
+    { id: 'discard', section: 'פרק רביעי - טריק הזריקה', link: '#feed',
+      keywords: ['זרוק','זריקה','discard','פסולת','מה לעשות עם המחמצת','שאריות'],
+      answer: 'לא לזרוק לפח! למחמצת הזרוקה יש המון שימושים:<br><br>• <strong>קרקרים פריכים</strong><br>• <strong>פנקייק בצקי ועשיר</strong><br>• <strong>בלילה לחביתיות</strong><br><br>הטעם מדהים והיא עובדת מצוין במתכונים האלה גם לא בשיא פעילות.'
+    },
+    { id: 'water', section: 'פרק רביעי - מים', link: '#feed',
+      keywords: ['מי ברז','מי הברז','כלור','מסננת','מים לברז'],
+      answer: 'אם מי הברז עם כלור חזק - <strong>להשאיר כוס מים על הדלפק לכמה שעות</strong> לפני ההאכלה. הכלור מתנדף, והחיידקים מודים.<br><br>גם מים ממסננת ומי ברז שעמדו לילה מצוינים. לא חובה מים מיוחדים.'
+    },
+    { id: 'temp', section: 'פרק רביעי - טמפרטורה', link: '#feed',
+      keywords: ['טמפרטורה','חם','קר','חורף','קיץ','מעלות המטבח'],
+      answer: '<strong>הטמפרטורה קובעת הכל:</strong><br><br>• מעל 24° → המחמצת רצה מהר.<br>• מתחת ל-20° → המחמצת עצלה.<br><br><strong>טריק חורף:</strong> תנור עם אור דלוק = סביבה של ~25°. מושלם.<br><br><em>לזכור:</em> מטבח חם = תפיחה מהירה, פחות חמצמץ. מטבח קר = תפיחה איטית, יותר חמצמץ.'
+    },
+    { id: 'sour', section: 'פרק שמיני - פילוסופיית הטעם', link: '#aromas',
+      keywords: ['חמוץ','חמיצות','חמצמץ','מדי חמוץ','לא חמוץ','עדין','פחות חמוץ'],
+      answer: '<strong>רוצים פחות חמוץ?</strong><br>• לקצר את התפיחה הקרה (6-8 שעות במקום 24).<br>• להשתמש במחמצת פעילה ולא בשלה מדי.<br>• להעביר למטבח חם יותר (שמרים אוהבים חום, בקטרית החומצה אוהבת קור).<br><br><strong>רוצים יותר חמוץ?</strong><br>• תפיחה קרה ארוכה יותר (מעל 12 שעות).<br>• להוסיף קורטוב שיפון מלא.'
+    },
+    { id: 'score', section: 'פרק שביעי - שלב 7', link: '#steps',
+      keywords: ['חריתה','חורטים','score','להב','חתך','חיתוך לחם'],
+      answer: '<strong>חריתה:</strong><br><br>• הופכים את הבצק מסלסלת התפיחה לתוך הסיר הלוהט (התפר עכשיו בתחתית).<br>• חורטים מיד בחוזקה עם <strong>להב חד</strong> (ז\'ילט / סכין ארוך ודק / להב ייעודי).<br>• חתך ארוך באלכסון או כמה חתכים מסודרים.<br>• סוגרים מכסה ולתנור.<br><br>החריתה מכוונת איפה הלחם "ייפתח" בתפיחה בתנור.'
+    },
+    { id: 'aromas', section: 'פרק שמיני - סודות הריח והטעם', link: '#aromas',
+      keywords: ['טעם','טעמים','ריחני','ארומה','דבש','סילאן','זרעים','זיתים','רוזמרין','תוספות','להוסיף טעם'],
+      answer: '<strong>דברים שמשנים את הטעם:</strong><br><br>• <strong>תפיחה ארוכה וקרה</strong> (>12ש במקרר) - הכי משפיע.<br>• <strong>10% שיפון מלא</strong> - ניחוח של קרמל ואדמה.<br>• <strong>כפית דבש/סילאן</strong> - דלק לשמרים, עומק ללחם.<br>• <strong>השריית זרעים</strong> (פשתן/חמנייה/דלעת) שעה לפני הערבוב.<br>• <strong>זיתים + רוזמרין</strong> - בסוף הקיפול הראשון, לחם חגיגי.<br>• <strong>קמח קלוי במחבת</strong> (5 דק) - ניחוח שקשה לשכוח.'
+    }
+  ];
+
+  // הצעות ראשוניות
+  const starterSuggestions = [
+    'איך יודעים שהמחמצת מוכנה?',
+    'איך מכינים מחמצת מאפס?',
+    'מה עושים אם הלחם שטוח?',
+    'מתי מוסיפים מלח?',
+    'מתכון בסיסי'
+  ];
+
+  // נרמול טקסט לחיפוש
+  function normalize(s) {
+    return (s || '').toLowerCase().replace(/[.,?!;:"'()]/g, ' ').replace(/\s+/g,' ').trim();
+  }
+
+  function findAnswer(query) {
+    const q = normalize(query);
+    if (!q) return null;
+    let best = null;
+    let bestScore = 0;
+    for (const entry of kb) {
+      let score = 0;
+      for (const kw of entry.keywords) {
+        const nk = normalize(kw);
+        if (q.includes(nk)) score += nk.length >= 4 ? 3 : 2;
+      }
+      // בונוס אם המזהה עצמו נמצא
+      if (q.includes(entry.id)) score += 2;
+      if (score > bestScore) { bestScore = score; best = entry; }
+    }
+    return bestScore >= 2 ? best : null;
+  }
+
+  const fallback = {
+    answer: 'מעניין - לא מצאתי תשובה מדויקת לשאלה הזו. אפשר לנסות לשאול על: <em>יצירת מחמצת</em>, <em>איך יודעים שהיא מוכנה</em>, <em>שלבי האפייה</em>, <em>בעיות נפוצות</em>, או <em>הוספת טעמים</em>. אפשר גם לעיין בקורס המלא למעלה. ✨',
+    section: null, link: null
+  };
+
+  // UI
+  const toggle = document.getElementById('sd-chat-toggle');
+  const panel = document.getElementById('sd-chat-panel');
+  const closeBtn = document.getElementById('sd-chat-close');
+  const form = document.getElementById('sd-chat-form');
+  const input = document.getElementById('sd-chat-input');
+  const messages = document.getElementById('sd-chat-messages');
+  const suggBox = document.getElementById('sd-chat-suggestions');
+
+  function openPanel() {
+    panel.hidden = false;
+    toggle.classList.add('sd-open');
+    setTimeout(() => input.focus(), 100);
+    if (!messages.dataset.welcomed) {
+      addBot('היי! כאן אפשר לשאול כל דבר על מחמצת 🍞 - יצירה, האכלה, אפייה או פתרון בעיות. מה רציתם לדעת?');
+      renderSuggestions(starterSuggestions);
+      messages.dataset.welcomed = '1';
+    }
+  }
+  function closePanel() {
+    panel.hidden = true;
+    toggle.classList.remove('sd-open');
+  }
+
+  toggle.addEventListener('click', () => { panel.hidden ? openPanel() : closePanel(); });
+  closeBtn.addEventListener('click', closePanel);
+
+  function addMsg(cls, html) {
+    const div = document.createElement('div');
+    div.className = 'sd-msg ' + cls;
+    div.innerHTML = html;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+
+  function addBot(html, source, link) {
+    let full = html;
+    if (source) {
+      full += '<div class="sd-source">מקור: ' + (link ? '<a href="'+link+'" onclick="document.getElementById(\'sd-chat-close\').click()">'+source+'</a>' : source) + '</div>';
+    }
+    return addMsg('bot', full);
+  }
+
+  function addTyping() {
+    const div = document.createElement('div');
+    div.className = 'sd-msg bot sd-typing-wrap';
+    div.innerHTML = '<div class="sd-typing"><span></span><span></span><span></span></div>';
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+
+  function renderSuggestions(list) {
+    suggBox.innerHTML = '';
+    list.forEach(text => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'sd-suggestion';
+      btn.textContent = text;
+      btn.addEventListener('click', () => {
+        input.value = text;
+        form.dispatchEvent(new Event('submit', { cancelable: true }));
+      });
+      suggBox.appendChild(btn);
+    });
+  }
+
+  function handleQuery(q) {
+    addMsg('user', q.replace(/</g,'&lt;'));
+    suggBox.innerHTML = '';
+    const typing = addTyping();
+    setTimeout(() => {
+      typing.remove();
+      const match = findAnswer(q);
+      if (match) {
+        addBot(match.answer, match.section, match.link);
+        // הצעות המשך - 3 אקראיות מהרשימה שלא נבחרו
+        const others = kb.filter(e => e.id !== match.id).sort(() => Math.random() - 0.5).slice(0,3);
+        renderSuggestions(others.map(e => e.section.replace(/^פרק [^-]+-\s*/, '')).slice(0,3));
+      } else {
+        addBot(fallback.answer);
+        renderSuggestions(starterSuggestions);
+      }
+    }, 450 + Math.random() * 300);
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) return;
+    handleQuery(q);
+    input.value = '';
+  });
+})();
+</script>
+
+</body>
+</html>
