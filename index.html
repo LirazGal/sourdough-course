@@ -135,8 +135,23 @@
   }
   .bread-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 900px) {
+    .bread-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .bread-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  }
+  .bread-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin-bottom: 14px;
+    background: var(--cream);
   }
   .bread-card {
     text-align: center;
@@ -155,9 +170,11 @@
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(139,69,19,0.12);
   }
-  .bread-card svg {
-    width: 100%;
-    height: 110px;
+  .bread-card:hover img {
+    transform: scale(1.03);
+  }
+  .bread-card img {
+    transition: transform 0.3s ease;
   }
   .bread-card h4 {
     font-family: 'Frank Ruhl Libre', serif;
@@ -788,8 +805,7 @@
 
   /* Bread cards - hover float already; add reveal */
   .bread-card { transition: transform .3s, box-shadow .3s, opacity .7s ease-out; }
-  .bread-card svg { transition: transform .35s ease-out; }
-  .bread-card:hover svg { transform: scale(1.06) rotate(-2deg); }
+  .bread-card:hover img { transform: scale(1.04); }
 
   /* Callouts - subtle slide */
   .callout.reveal-pop.is-visible { animation: callout-bump .55s ease-out; }
@@ -920,86 +936,37 @@
 
 <section class="gallery">
   <h2>משפחת הלחמים</h2>
-  <p class="subtitle">שישה סוגי לחם שתלמדו להכין לאורך הקורס - מהבסיס עד המורכב</p>
+  <p class="subtitle">חמישה סוגי לחם שתלמדו להכין לאורך הקורס - מהבסיס עד המורכב</p>
   <div class="bread-grid">
     <a class="bread-card" href="#r-boule">
-      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
-        <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
-        <path d="M30,35 Q60,25 90,35" stroke="#8b4513" stroke-width="1.5" fill="none"/>
-      </svg>
+      <img src="Photos/bread-boule.png" alt="לחם בול - קלאסי עגול" loading="lazy">
       <h4>בּוּל</h4>
       <p>הקלאסי העגול, חתך אחד או X</p>
       <span class="bread-card-cta">למתכון ←</span>
     </a>
     <a class="bread-card" href="#r-batard">
-      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="60" cy="68" rx="48" ry="4" fill="#8b4513" opacity=".2"/>
-        <ellipse cx="60" cy="45" rx="50" ry="20" fill="none" stroke="#8b4513" stroke-width="2"/>
-        <line x1="32" y1="35" x2="40" y2="55" stroke="#8b4513" stroke-width="1.5"/>
-        <line x1="52" y1="32" x2="60" y2="55" stroke="#8b4513" stroke-width="1.5"/>
-        <line x1="72" y1="32" x2="80" y2="55" stroke="#8b4513" stroke-width="1.5"/>
-      </svg>
+      <img src="Photos/bread-batard.jpg" alt="לחם באטאר - אליפסה עם חתכים אלכסוניים" loading="lazy">
       <h4>בּאטאר</h4>
       <p>אליפסה עם חתכים אלכסוניים</p>
       <span class="bread-card-cta">למתכון ←</span>
     </a>
     <a class="bread-card" href="#r-country">
-      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="60" cy="68" rx="42" ry="4" fill="#8b4513" opacity=".2"/>
-        <ellipse cx="60" cy="45" rx="42" ry="26" fill="none" stroke="#8b4513" stroke-width="2"/>
-        <circle cx="45" cy="32" r="1.5" fill="#8b4513"/>
-        <circle cx="55" cy="28" r="1.5" fill="#8b4513"/>
-        <circle cx="65" cy="30" r="1.5" fill="#8b4513"/>
-        <circle cx="75" cy="35" r="1.5" fill="#8b4513"/>
-        <circle cx="50" cy="42" r="1.5" fill="#8b4513"/>
-        <circle cx="70" cy="45" r="1.5" fill="#8b4513"/>
-        <circle cx="60" cy="38" r="1.5" fill="#8b4513"/>
-      </svg>
+      <img src="Photos/bread-country.jpeg" alt="לחם כפרי עם זרעים ודגנים" loading="lazy">
       <h4>לחם כפרי</h4>
       <p>עם זרעים ודגנים</p>
       <span class="bread-card-cta">למתכון ←</span>
     </a>
     <a class="bread-card" href="#r-rye">
-      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="60" cy="68" rx="38" ry="4" fill="#8b4513" opacity=".2"/>
-        <rect x="22" y="28" width="76" height="36" rx="6" fill="none" stroke="#5c3317" stroke-width="2"/>
-        <line x1="35" y1="40" x2="85" y2="40" stroke="#5c3317" stroke-width="1"/>
-        <line x1="35" y1="48" x2="85" y2="48" stroke="#5c3317" stroke-width="1"/>
-      </svg>
+      <img src="Photos/bread-rye.jpg" alt="לחם שיפון מלא" loading="lazy">
       <h4>שיפון מלא</h4>
       <p>צפוף, עמוק, ריח אדמה</p>
       <span class="bread-card-cta">למתכון ←</span>
     </a>
     <a class="bread-card" href="#r-baguette">
-      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="60" cy="68" rx="48" ry="3" fill="#8b4513" opacity=".2"/>
-        <path d="M15,45 Q15,38 25,38 L95,38 Q105,38 105,45 Q105,52 95,52 L25,52 Q15,52 15,45 Z" fill="none" stroke="#8b4513" stroke-width="2"/>
-        <line x1="28" y1="40" x2="32" y2="50" stroke="#8b4513" stroke-width="1"/>
-        <line x1="42" y1="40" x2="46" y2="50" stroke="#8b4513" stroke-width="1"/>
-        <line x1="56" y1="40" x2="60" y2="50" stroke="#8b4513" stroke-width="1"/>
-        <line x1="70" y1="40" x2="74" y2="50" stroke="#8b4513" stroke-width="1"/>
-        <line x1="84" y1="40" x2="88" y2="50" stroke="#8b4513" stroke-width="1"/>
-      </svg>
+      <img src="Photos/bread-baguette.jpg" alt="באגט ארוך ודק עם קרום פריך" loading="lazy">
       <h4>באגט</h4>
       <p>ארוך ודק, קרום פריך</p>
       <span class="bread-card-cta">למתכון ←</span>
-    </a>
-    <a class="bread-card" href="#steps">
-      <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20,60 Q20,25 60,25 Q100,25 100,60 Z" fill="none" stroke="#8b4513" stroke-width="2"/>
-        <path d="M20,60 Q20,25 60,25 Q100,25 100,60 Z" fill="#faf3e7"/>
-        <circle cx="35" cy="48" r="3" fill="none" stroke="#c8935c" stroke-width="0.8"/>
-        <circle cx="50" cy="42" r="4.5" fill="none" stroke="#c8935c" stroke-width="0.8"/>
-        <circle cx="65" cy="50" r="3.5" fill="none" stroke="#c8935c" stroke-width="0.8"/>
-        <circle cx="80" cy="45" r="4" fill="none" stroke="#c8935c" stroke-width="0.8"/>
-        <circle cx="45" cy="55" r="2.5" fill="none" stroke="#c8935c" stroke-width="0.8"/>
-        <circle cx="72" cy="56" r="2" fill="none" stroke="#c8935c" stroke-width="0.8"/>
-        <path d="M20,60 Q20,25 60,25 Q100,25 100,60" fill="none" stroke="#8b4513" stroke-width="2"/>
-      </svg>
-      <h4>חתך רוחב</h4>
-      <p>פנים פתוח - היעד</p>
-      <span class="bread-card-cta">לשלבי האפייה ←</span>
     </a>
   </div>
 </section>
@@ -2058,6 +2025,10 @@
     { id: 'cooling', section: 'פרק שביעי - אחרי האפייה', link: '#steps',
       keywords: ['לחתוך','לפרוס','פריסה','חיתוך','לחכות','התקררות','חמה','רטוב','סמיך'],
       answer: '<strong>חכו שעה לפני פריסה!</strong><br><br>הלחם ממשיך להתבשל כשהוא מתקרר. אם חותכים חם - הפנים יהיה רטוב וסמיך. שעת המתנה = מרקם מושלם.<br><br>כן, זה החלק הכי קשה בקורס הזה.'
+    },
+    { id: 'hungry', section: 'פרק רביעי - מתי להאכיל', link: '#feed',
+      keywords: ['רעבה','רעב','רעבות','הרעיבה','מתי להאכיל','מתי מאכילים','צריכה אוכל','איך יודעים רעבה','שקעה','קרסה','קרסתי','צנחה','ירדה','התכווצה','התקפלה','השתטחה','שקעה במרכז','שקעה בצנצנת','בלי בועות','אין בועות','מעט בועות','חלשה','רפויה','דלילה','מדוכדכת','עצובה','לא פעילה','איך יודעים שהיא צריכה'],
+      answer: '<strong>סימנים שהמחמצת רעבה וצריכה אוכל:</strong><br><br><strong>מה רואים:</strong><br>• <em>שקעה/קרסה</em> - היא היתה תפוחה, ועכשיו שקועה פנימה עם שקע במרכז.<br>• <em>קו מים גבוה על הצנצנת</em> - סימן שמראה כמה היא עלתה בשיא, ועכשיו היא נמוך ממנו.<br>• <em>נוזל אפרפר למעלה</em> (hooch) - תוצר לוואי של תסיסה ארוכה בלי אוכל.<br>• <em>מעט בועות או בלי בועות</em> - היא איטית ומותשת.<br>• <em>מרקם דליל, נופל מהכפית כמו בלילה</em> במקום להיות מלא אוויר וקפיצי.<br><br><strong>מה מריחים:</strong><br>• <em>ריח חזק של אצטון או מסיר לק</em> = רעבה מאוד.<br>• <em>ריח חומץ חריף</em> = רעבה.<br>• <em>ריח אלכוהולי דומיננטי</em> (כמו בירה שעברה זמנה) = רעבה.<br>• לעומת זאת: ריח של <em>יוגורט + פירות + נגיעה קלה של אלכוהול</em> = שבעה ומאושרת.<br><br><strong>סימני זמן:</strong><br>• על <strong>הדלפק</strong> (22-26°): עברו מעל 12 שעות מההאכלה בלי שהיא עלתה ונפלה חזרה.<br>• ב<strong>מקרר</strong>: עברו 7-10 ימים מההאכלה האחרונה.<br>• ב<strong>קיץ/חום</strong> (28°+): אפילו אחרי 6-8 שעות היא כבר יכולה להיות רעבה.<br><br><strong>מה לעשות:</strong><br>לזרוק את רובה, להשאיר כף, ולהאכיל ביחס 1:1:1 (<em>כף מחמצת + כף קמח + כף מים</em>) - או 1:2:2 אם היא היתה רעבה מאוד. תוך 4-8 שעות היא אמורה להתעורר, להתמלא בועות, ולהכפיל נפח.'
     },
     { id: 'hooch', section: 'פרק רביעי - בעיות נפוצות', link: '#feed',
       keywords: ['נוזל','הוץ','hooch','שכבה','צף','צפה','שכבה שחורה','שכבה אפורה','נוזל שחור','נוזל אפור','נוזל מעל','אלכוהול','התפרדות','מופרדת','שכבת נוזל','נוזל למעלה','התפרדה'],
