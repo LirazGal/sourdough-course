@@ -611,6 +611,50 @@
     .recipes .recipe-icon { width: 100px; height: 70px; }
   }
 
+  /* Step-by-step block inside each recipe */
+  .recipe-steps-block {
+    margin-top: 22px;
+    border-top: 1px dashed var(--cream-dark);
+    padding-top: 18px;
+  }
+  .recipe-steps-block > summary {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--crust);
+    cursor: pointer;
+    list-style: none;
+    padding: 10px 14px;
+    background: var(--cream);
+    border-radius: 10px;
+    transition: background .2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .recipe-steps-block > summary:hover { background: var(--amber-soft); }
+  .recipe-steps-block > summary::-webkit-details-marker { display: none; }
+  .recipe-steps-block > summary::before {
+    content: "◂";
+    display: inline-block;
+    color: var(--amber);
+    font-size: 14px;
+    transition: transform .2s ease;
+  }
+  .recipe-steps-block[open] > summary::before { transform: rotate(-90deg); }
+  .recipe-steps-block .timeline {
+    margin-top: 16px;
+    margin-bottom: 0;
+    background: #fff;
+  }
+  .recipe-steps-block .timeline-time {
+    flex: 0 0 160px;
+    font-size: 16px;
+  }
+  .recipe-steps-block .callout {
+    margin-top: 16px;
+  }
+
   /* Problem/Solution grid */
   .trouble {
     display: grid;
@@ -1256,6 +1300,79 @@
         </ul>
       </div>
     </div>
+
+    <details class="recipe-steps-block" open>
+      <summary>הוראות מפורטות - צעד אחר צעד עם תזמונים</summary>
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-time">0:00 - ערבוב ראשוני</div>
+          <div class="timeline-what">
+            בקערה גדולה מערבבים <strong>רק קמח ומים</strong> - 4 כוסות קמח לחם + 1½ כוס מים פושרים (מים בטמפרטורת ברז בקיץ, לא חמים). מערבבים ביד כ־2 דקות עד שאין גושים יבשים. מכסים במגבת ועוזבים <strong>45 דקות</strong>. זו האוטוליזה - שלב שבו הקמח שותה את המים ומתחיל לבנות גלוטן לבד.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0:45 - מוסיפים מחמצת ומלח</div>
+          <div class="timeline-what">
+            עושים גומה במרכז הבצק. מוסיפים <strong>½ כוס מחמצת פעילה</strong> (ראו מבחן הצפה בטיפ למטה). מפזרים מעל <strong>2 כפיות מלח</strong>. לוחצים, מוחצים וסוחטים ביד <strong>5-7 דקות</strong> עד שהבצק מתאחד לגוש רטוב אבל חלק. לא ללוש במובן הרגיל - רק לאחד.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">1:00 - תפיחה ראשונה</div>
+          <div class="timeline-what">
+            מכסים את הקערה ומתחילים <strong>4-6 שעות תפיחה</strong> על הדלפק (4 שעות בקיץ, 6 בחורף). <strong>כל 30-45 דקות בשלוש השעות הראשונות</strong> עושים סט מתיחות וקיפולים (4 קיפולים = סט). סך הכול 3-4 סטים. בין הסטים - לא נוגעים.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~5:00 - עיצוב ראשוני</div>
+          <div class="timeline-what">
+            הבצק צריך להיראות גדול ב־50-70%, עם בועות קטנות על פני השטח. מוציאים בעדינות על דלפק מעט מקומח. מגרדים את הבצק לכדור רופף ומשאירים <strong>20 דקות</strong> מנוחה, מכוסה במגבת.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~5:20 - עיצוב סופי</div>
+          <div class="timeline-what">
+            מותחים את הבצק לריבוע רופף, מקפלים את כל הצדדים פנימה כמו מעטפה, הופכים על התפר ומגלגלים לכדור הדוק עם מתח עליון. מניחים בסלסלת תפיחה עגולה מקומחת היטב, <strong>עם התפר כלפי מעלה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">5:30 - תפיחה שנייה</div>
+          <div class="timeline-what">
+            מכניסים את הסלסלה בשקית ניילון למקרר למשך <strong>8-16 שעות</strong> (האפשרות המומלצת - טעם עמוק יותר). אופציה קצרה: משאירים על הדלפק <strong>1-2 שעות</strong> ואופים מיד.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">למחרת - חימום התנור</div>
+          <div class="timeline-what">
+            <strong>45 דקות לפני האפייה</strong>, מחממים תנור ל־<strong>250°C</strong> עם סיר ברזל יצוק (כולל המכסה) בפנים. הסיר חייב להגיע לחום גבוה - אם הוא פחות לוהט, הלחם לא "יקפוץ".
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0-20 דק' אפייה</div>
+          <div class="timeline-what">
+            מוציאים את הסיר בזהירות (כפפות!). הופכים את הבצק פנימה - עכשיו התפר למטה. חורטים X או חתך אלכסוני אחד בעומק חצי ס"מ בלהב חד. סוגרים מכסה, מחזירים לתנור. <strong>אופים 20 דקות ב־250°C עם מכסה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">20-45 דק' אפייה</div>
+          <div class="timeline-what">
+            מורידים את המכסה. מנמיכים ל־<strong>230°C</strong>. אופים עוד <strong>20-25 דקות</strong> עד קרום חום עמוק (יותר ממה שזה נראה לעין הישראלית הממוצעת). דופקים על הבסיס - צריך להישמע חלול כמו תוף.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">אחרי האפייה</div>
+          <div class="timeline-what">
+            מעבירים לרשת. <strong>ממתינים שעה שלמה לפני פריסה</strong>. הלחם ממשיך להתבשל בזמן ההתקררות. חיתוך מוקדם = פנים דביק וסמיך.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>טיפים למתחילים:</strong><br>
+        <strong>מבחן הצפה למחמצת:</strong> שמים כפית מחמצת בכוס מים קרים. אם צפה - מוכנה לעבודה. אם שוקעת - צריך להאכיל שוב ולחכות.<br>
+        <strong>בלי סיר ברזל יצוק?</strong> אופים על תבנית רגילה עם תבנית שנייה בתחתית התנור. שופכים 4-5 קוביות קרח לתבנית התחתונה בדיוק לפני שסוגרים את הדלת - זה יוצר קיטור.<br>
+        <strong>חשש מהחריתה?</strong> להב חד זה קריטי. סכין חמאה רגילה תגרור את הבצק ותפגע בו. אפשר להשתמש בלהב גילוח פשוט.
+      </div>
+    </details>
   </article>
 
   <article id="r-batard" class="recipe-card">
@@ -1292,6 +1409,79 @@
         </ul>
       </div>
     </div>
+
+    <details class="recipe-steps-block">
+      <summary>הוראות מפורטות - צעד אחר צעד עם תזמונים</summary>
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-time">0:00 - ערבוב ראשוני</div>
+          <div class="timeline-what">
+            מערבבים בקערה <strong>רק קמח ומים</strong> - 4 כוסות קמח לחם + 1½ כוס מים פושרים. מערבבים ביד עד שאין גושים יבשים. מכסים ועוזבים <strong>45 דקות</strong> לאוטוליזה. זהה לחלוטין לבול - אותו בצק, רק צורה שונה.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0:45 - מוסיפים מחמצת ומלח</div>
+          <div class="timeline-what">
+            מוסיפים <strong>½ כוס מחמצת פעילה</strong> בגומה במרכז, מפזרים מעל <strong>2 כפיות מלח</strong>. לוחצים ומוחצים ביד <strong>5-7 דקות</strong> עד שהבצק מתאחד.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">1:00 - תפיחה ראשונה</div>
+          <div class="timeline-what">
+            <strong>4-6 שעות</strong> על הדלפק. <strong>כל 30-45 דקות בשלוש השעות הראשונות</strong> - סט מתיחות וקיפולים (3-4 סטים סך הכול).
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~5:00 - עיצוב ראשוני</div>
+          <div class="timeline-what">
+            מוציאים על דלפק מקומח, מגרדים לכדור רופף, <strong>20 דקות מנוחה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~5:20 - עיצוב באטאר</div>
+          <div class="timeline-what">
+            <strong>כאן ההבדל העיקרי מהבול:</strong> מרדדים את הבצק לריבוע רופף של כ־20 ס"מ. מקפלים את הצד הימני למרכז, ואת הצד השמאלי מעליו (כמו מעטפה). מגלגלים מלמעלה למטה לגליל צר וארוך, כ־25 ס"מ, עם <strong>קצוות מחודדים</strong> כמו לימון. מניחים בסלסלת תפיחה אליפטית (או כלי ארוך ומרופד במגבת), עם התפר למעלה.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">5:30 - תפיחה שנייה</div>
+          <div class="timeline-what">
+            למקרר ל־<strong>8-16 שעות</strong> (מומלץ), או <strong>1-2 שעות</strong> על הדלפק.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">למחרת - חימום התנור</div>
+          <div class="timeline-what">
+            <strong>45 דקות קדימה</strong>, מחממים תנור ל־<strong>250°C</strong> עם סיר סגלגל (אובלי) בפנים. אם אין סיר אובלי - אבן שמוט או תבנית הפוכה עם תבנית קרח בתחתית לקיטור.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0-20 דק' אפייה</div>
+          <div class="timeline-what">
+            מוציאים את הסיר, הופכים את הבצק פנימה (תפר למטה). חורטים <strong>3-5 חתכים אלכסוניים</strong> לאורך הבצק, בזוויות של 30 מעלות, חופפים קלות זה את זה. עומק חצי ס"מ. סוגרים מכסה. <strong>20 דקות ב־250°C עם מכסה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">20-40 דק' אפייה</div>
+          <div class="timeline-what">
+            מורידים מכסה, מנמיכים ל־<strong>230°C</strong>. אופים עוד <strong>15-20 דקות</strong> (באטאר אופה קצת פחות מבול כי הוא צר יותר) עד קרום חום עמוק.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">אחרי האפייה</div>
+          <div class="timeline-what">
+            לרשת. <strong>ממתינים שעה לפני פריסה</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>טיפים למתחילים:</strong><br>
+        <strong>הקצוות המחודדים:</strong> כשמגלגלים את הגליל בסוף, לוחצים קלות את כפות הידיים לעבר הקצוות החוצה - זה יוצר את הצורה האליפטית הקלאסית של הבאטאר.<br>
+        <strong>חריתה בזווית:</strong> אוחזים את הלהב כמעט מקביל לבצק (לא מאונך!) - חיתוך בזווית נותן ל"אוזניים" יפות להיפתח בתנור.<br>
+        <strong>אין סלסלה אליפטית?</strong> משתמשים בכלי ארוך ומרופד במגבת מקומחת. אפילו שקית קמח ריקה עם מגבת פנימית עובדת.
+      </div>
+    </details>
   </article>
 
   <article id="r-country" class="recipe-card">
@@ -1332,6 +1522,97 @@
         </ul>
       </div>
     </div>
+
+    <details class="recipe-steps-block">
+      <summary>הוראות מפורטות - צעד אחר צעד עם תזמונים</summary>
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-time">שעה-1:00 - השריית זרעים</div>
+          <div class="timeline-what">
+            <strong>שעה לפני הערבוב הראשוני</strong>, בקערית נפרדת משרים את תערובת הזרעים (2 כפות פשתן + 2 כפות חמנייה + 1 כף שומשום) ב־<strong>½ כוס מים חמימים</strong>. הזרעים שותים את כל המים ומתנפחים. זה חשוב - זרעים יבשים בבצק ישאבו מים ויעשו אותו יבש.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0:00 - ערבוב ראשוני</div>
+          <div class="timeline-what">
+            מערבבים <strong>רק קמחים ומים</strong>: 3 כוסות קמח לחם + 1 כוס קמח חיטה מלאה + 1¾ כוסות מים פושרים (כן, יותר מאשר בבול - כי הקמח המלא שותה יותר). מערבבים עד שאין גושים יבשים. מכסים ו<strong>45 דקות אוטוליזה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0:45 - מוסיפים מחמצת ומלח</div>
+          <div class="timeline-what">
+            מוסיפים <strong>½ כוס מחמצת פעילה</strong> ומפזרים מעל <strong>2 כפיות מלח</strong>. לוחצים ומוחצים <strong>5-7 דקות</strong> עד שהבצק מתאחד. <strong>עדיין לא מוסיפים זרעים!</strong>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">1:00 - תחילת תפיחה ראשונה</div>
+          <div class="timeline-what">
+            מכסים. <strong>ממתינים 30 דקות</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">1:30 - סט קיפולים ראשון + הזרעים!</div>
+          <div class="timeline-what">
+            <strong>כאן מוסיפים את הזרעים המושרים</strong>: מפזרים אותם על הבצק ומקפלים פנימה עם סט הקיפולים הראשון (4 קיפולים). הקיפולים עוזרים לפזר את הזרעים באופן אחיד.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">2:00 / 2:30 / 3:00</div>
+          <div class="timeline-what">
+            עוד 3 סטים של קיפולים כל 30 דקות. סך הכול <strong>4 סטים</strong> (סט אחד יותר מבול - כי הקמח המלא צריך יותר עזרה לבניית הגלוטן).
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~5:00 - עיצוב ראשוני</div>
+          <div class="timeline-what">
+            הבצק גדל ב־50-70%. מוציאים על דלפק מעט מקומח, מגרדים לכדור רופף, <strong>20 דקות מנוחה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~5:20 - עיצוב סופי + ציפוי זרעים</div>
+          <div class="timeline-what">
+            מעצבים לכדור הדוק כמו בבול. <strong>הטריק:</strong> לפני שמכניסים לסלסלה, מרטיבים את פני הלחם קלות במים ו<strong>מגלגלים בצלחת עם זרעים</strong> (שומשום, חמנייה, פשתן). מניחים בסלסלה עגולה עם התפר למעלה.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">5:30 - תפיחה שנייה</div>
+          <div class="timeline-what">
+            למקרר <strong>8-16 שעות</strong> (מומלץ) או <strong>1-2 שעות</strong> על הדלפק.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">למחרת - חימום התנור</div>
+          <div class="timeline-what">
+            <strong>45 דקות קדימה</strong>, מחממים תנור ל־<strong>250°C</strong> עם סיר ברזל יצוק בפנים.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0-20 דק' אפייה</div>
+          <div class="timeline-what">
+            מוציאים את הסיר. הופכים את הבצק פנימה. חורטים חתך אחד פשוט או X. סוגרים מכסה. <strong>20 דקות ב־250°C עם מכסה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">20-45 דק' אפייה</div>
+          <div class="timeline-what">
+            מורידים מכסה, מנמיכים ל־<strong>230°C</strong>. אופים עוד <strong>20-25 דקות</strong> עד קרום חום עמוק.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">אחרי האפייה</div>
+          <div class="timeline-what">
+            לרשת. <strong>ממתינים שעה לפני פריסה</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>טיפים למתחילים:</strong><br>
+        <strong>הזרעים בוערים בקלות:</strong> אם הקרום זהוב כבר אחרי 30 דקות והזרעים בחוץ משחימים מהר - אפשר לכסות את הלחם בנייר אלומיניום ל־10 הדקות האחרונות.<br>
+        <strong>להחליף את הזרעים:</strong> המתכון גמיש. דלעת, צ'יה, שיבולת שועל, אגוזים קצוצים - כל דבר מושרה. הכמות הכוללת: <strong>עד 5 כפות זרעים</strong> על הכמות הזו של בצק.<br>
+        <strong>ציפוי חיצוני בלי הרטבה:</strong> אפשר לפזר את הזרעים על קרקעית הסלסלה לפני שמניחים את הבצק - הם יידבקו לבצק במהלך התפיחה.
+      </div>
+    </details>
   </article>
 
   <article id="r-rye" class="recipe-card">
@@ -1369,6 +1650,86 @@
         </ul>
       </div>
     </div>
+
+    <details class="recipe-steps-block">
+      <summary>הוראות מפורטות - צעד אחר צעד עם תזמונים</summary>
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-time">0:00 - ערבוב הכול יחד</div>
+          <div class="timeline-what">
+            <strong>שיפון הוא יוצא דופן - אין אוטוליזה!</strong> מערבבים בקערה הכול בבת אחת: 2 כוסות קמח שיפון מלא + 2 כוסות קמח לחם + 2 כוסות מים פושרים (כן, הרבה מים - שיפון שותה הרבה) + ½ כוס מחמצת פעילה (רצוי מוזנת בשיפון) + 2¼ כפיות מלח. אופציונלי: כף זרעי כמון / שומר.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0:00-0:05 - ערבוב</div>
+          <div class="timeline-what">
+            מערבבים ביד <strong>3-5 דקות</strong> בלבד. הבצק יהיה <strong>רטוב, דביק ו"כמו בוץ"</strong> - זה בסדר! שיפון לא בונה גלוטן כמו חיטה, אז הבצק לא יהפוך חלק כמו לחמים אחרים. לא ללוש יותר מדי - מריחים שהוא אחיד וזהו.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0:05 - תפיחה ראשונה</div>
+          <div class="timeline-what">
+            מכסים במגבת. <strong>3-4 שעות</strong> על הדלפק (שיפון מתסיס מהר יותר מחיטה). <strong>2 סטים של קיפולים בלבד</strong>: הראשון אחרי שעה, השני אחרי שעה וחצי. יותר מזה מזיק - שובר את מבנה השיפון.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~3:30 - סוף תפיחה ראשונה</div>
+          <div class="timeline-what">
+            הבצק גדל בכ־50% (פחות מלחם חיטה - זה נורמלי). יש בועות גדולות על פני השטח. <strong>אין שלב עיצוב ראשוני נפרד</strong> בשיפון - עוברים ישר לעיצוב הסופי.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~3:35 - עיצוב והכנסה לתבנית</div>
+          <div class="timeline-what">
+            <strong>משמנים היטב תבנית אינגליש קייק</strong> (גם בחמאה וגם מפזרים קמח, או משתמשים בנייר אפייה). מוציאים את הבצק על דלפק רטוב (לא מקומח - שיפון לא צריך קמח). עם ידיים רטובות מגלגלים ללבנה בגודל התבנית, מניחים פנימה עם התפר למטה. <strong>מחליקים את הפנים עם יד רטובה</strong> - זה יוצר גימור חלק.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~3:40 - תפיחה שנייה</div>
+          <div class="timeline-what">
+            מכסים את התבנית במגבת. <strong>1.5-2.5 שעות</strong> על הדלפק (שיפון <strong>לא אוהב תפיחה קרה</strong> - לא למקרר). הלחם מוכן לאפייה כש<strong>יש סדקים קטנים על פני השטח</strong> - זה הסימן הקלאסי של שיפון מוכן.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~4:45 - חימום התנור</div>
+          <div class="timeline-what">
+            מתחילים לחמם את התנור ל־<strong>230°C</strong> כ־30 דקות לפני שהתפיחה נגמרת. <strong>בלי סיר</strong> - שיפון אופים בתבנית פתוחה. מניחים תבנית נוספת ריקה בתחתית התנור (לקיטור).
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">רגע לפני האפייה</div>
+          <div class="timeline-what">
+            <strong>חורטים קל בלבד</strong>: 2-3 שריטות עדינות על פני השטח עם מזלג (לא סכין!) - בעומק 2-3 מ"מ, לא יותר. שוכחים מ"אוזניים" או חתכים דרמטיים - שיפון לא עושה את זה.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0-15 דק' אפייה</div>
+          <div class="timeline-what">
+            מכניסים את התבנית לתנור. <strong>שופכים כוס מים רותחים לתבנית התחתונה</strong> (זהירות מהאדים!), סוגרים מיד את הדלת. <strong>15 דקות ב־230°C עם קיטור</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">15-50 דק' אפייה</div>
+          <div class="timeline-what">
+            מנמיכים ל־<strong>200°C</strong> (שיפון נשרף קל יותר מחיטה). אופים עוד <strong>35-45 דקות</strong>. הלחם מוכן כאשר: טמפרטורה פנימית 96-98°C, או כאשר דופקים על הבסיס ונשמע חלול. השיפון מגיע לצבע חום עמוק מאוד - זה הנכון.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">אחרי האפייה - חובה!</div>
+          <div class="timeline-what">
+            מוציאים מהתבנית, מעבירים לרשת. <strong>ממתינים 12 שעות לפחות לפני פריסה!</strong> לא טעות - שיפון באמת צריך את הזמן הזה. אם חותכים מוקדם, הפנים יהיה דביק וחסר טעם. עוטפים במגבת נקייה אחרי שהתקרר ונותנים לו לנוח על הדלפק.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>טיפים למתחילים:</strong><br>
+        <strong>הבצק דביק וזה מבהיל:</strong> זה בסדר! שיפון הוא לא חיטה. הוא לא יהפוך חלק וגמיש. אם הוא נראה כמו דייסה סמיכה - זה בדיוק מה שצריך.<br>
+        <strong>עיצוב עם ידיים רטובות:</strong> לא מקמחים! שיפון נדבק לקמח יבש. מים על הידיים ועל הדלפק זה הטריק.<br>
+        <strong>הסבלנות של 12 שעות:</strong> אפשר לאפות בערב ולחתוך בבוקר. ככה הציפייה פחות כואבת.<br>
+        <strong>מחמצת מוזנת בשיפון:</strong> לוקחים חלק קטן מהמחמצת הרגילה, מאכילים פעמיים בקמח שיפון במקום חיטה. תוך יומיים מקבלים מחמצת שיפון ייעודית שמחזקת את הטעם העמוק.
+      </div>
+    </details>
   </article>
 
   <article id="r-baguette" class="recipe-card">
@@ -1409,6 +1770,86 @@
         </ul>
       </div>
     </div>
+
+    <details class="recipe-steps-block">
+      <summary>הוראות מפורטות - צעד אחר צעד עם תזמונים</summary>
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-time">0:00 - ערבוב ראשוני</div>
+          <div class="timeline-what">
+            מערבבים <strong>רק קמח ומים</strong>: 4 כוסות קמח לחם + 1⅓ כוסות מים פושרים (שימו לב - פחות מים מבול! הבאגט צריך להיות יותר יציב בשביל הצורה הארוכה). מערבבים עד שאין גושים, מכסים, <strong>45 דקות אוטוליזה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0:45 - מוסיפים מחמצת ומלח</div>
+          <div class="timeline-what">
+            מוסיפים <strong>⅓ כוס מחמצת פעילה בלבד</strong> (פחות מבול - כי באגט לא אמור להיות חמצמץ) + <strong>2 כפיות מלח</strong>. לוחצים ומוחצים <strong>5-7 דקות</strong> עד בצק חלק ומלוכד. הבצק צריך להיות <strong>פחות רטוב</strong> מבול - כמו מסטיק צפוף.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">1:00 - תפיחה ראשונה</div>
+          <div class="timeline-what">
+            <strong>3-4 שעות</strong> על הדלפק (קצרה יותר מבול - כי יש פחות מחמצת). <strong>3 סטים של קיפולים</strong> כל 30-45 דקות בשעה וחצי הראשונות.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~4:00 - חלוקה ועיצוב ראשוני</div>
+          <div class="timeline-what">
+            מוציאים את הבצק על דלפק מעט מקומח. <strong>שוקלים ומחלקים ל־3 חלקים שווים</strong> (כל אחד כ־350 גרם). מגלגלים כל חלק לגליל רופף באורך 15 ס"מ. מכסים במגבת, <strong>20 דקות מנוחה</strong>.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~4:20 - עיצוב סופי - הטכניקה הקלאסית</div>
+          <div class="timeline-what">
+            לוקחים גליל אחד, מרדדים לריבוע רופף של 20×15 ס"מ. <strong>מקפלים את השליש העליון למרכז</strong> ולוחצים את התפר. <strong>מקפלים את השליש התחתון מעליו</strong> ולוחצים שוב. הופכים על התפר ו<strong>מגלגלים מהמרכז החוצה</strong> עם שתי כפות הידיים - מרגישים איך הצורה מתארכת ל־<strong>35-40 ס"מ</strong>. חוזרים על 3 הגלילים.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~4:35 - תפיחה שנייה (קצרה!)</div>
+          <div class="timeline-what">
+            <strong>באגטים לא הולכים למקרר</strong> - הם צריכים תפיחה חמה בלבד. מניחים אותם על מגבת עבה מקומחת היטב (couche), עם <strong>קיפולי מגבת ביניהם</strong> כדי שלא יידבקו. מכסים. <strong>45-60 דקות בלבד</strong> על הדלפק.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">~4:00 (במקביל!) - חימום התנור</div>
+          <div class="timeline-what">
+            <strong>30-45 דקות לפני סוף התפיחה השנייה</strong>, מחממים תנור ל־<strong>230°C</strong> עם תבנית אפייה או אבן שמוט בגובה האמצע + תבנית ריקה בתחתית התנור לקיטור.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">רגע לפני האפייה</div>
+          <div class="timeline-what">
+            מעבירים את הבאגטים בזהירות (בעזרת קרטון דק או מגש הפוך) לתבנית האפייה הלוהטת. <strong>חורטים מהר 3-5 חתכים אלכסוניים ארוכים</strong> לאורך כל באגט. זווית החיתוך - כמעט מקבילה לבצק (לא מאונכת). החתכים חופפים קלות זה את זה.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">0-5 דק' אפייה</div>
+          <div class="timeline-what">
+            מכניסים את הבאגטים לתנור. <strong>מיד שופכים 4-5 קוביות קרח</strong> לתבנית התחתונה הלוהטת וסוגרים את הדלת במהירות (זהירות מאדים!). הקיטור קריטי - בלעדיו הקרום לא יהיה פריך.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">5-18 דק' אפייה</div>
+          <div class="timeline-what">
+            אופים ב־<strong>230°C למשך 18-22 דקות</strong> סך הכול. אחרי 15 דקות כדאי להציץ - הבאגטים צריכים להיות <strong>חומים זהובים</strong> עם חתכים שהתפתחו יפה. אם הם בהירים מדי - עוד 2-3 דקות.
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="timeline-time">אחרי האפייה</div>
+          <div class="timeline-what">
+            מוציאים לרשת. <strong>ממתינים 20 דקות בלבד</strong> (באגט קצר יותר מלחמים אחרים - אפשר לאכול יחסית מהר). שומעים את הקרום "שר" - מתפצח לבד כשהוא מתקרר. זה הסימן לבאגט מצוין.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>טיפים למתחילים:</strong><br>
+        <strong>אורך לא עובר את התבנית:</strong> מודדים את תבנית האפייה מראש. אם היא 38 ס"מ - הבאגט לא יכול להיות 40. מגלגלים עד 35 ס"מ כדי שיהיה מקום לתפיחה.<br>
+        <strong>חתכים מהירים וחדים:</strong> מאטים, מלכלכים. חורטים בתנועה אחת בביטחון. אפשר להוריד את סכין ההתיזה בזווית חדה כמעט מאוזנת - זה נותן את ה"אוזניים" הקלאסיות.<br>
+        <strong>אין couche?</strong> מגבת ישנה ונקייה, מקומחת היטב, עם קיפולים מפרידים בין הבאגטים עובדת מצוין.<br>
+        <strong>אוכלים היום:</strong> באגט זה לחם לאותו יום. למחרת הקרום כבר רך. אפשר להקפיא מיד אחרי ההתקררות - ולחמם בתנור חם (200°C, 5 דקות) לפני הגשה.
+      </div>
+    </details>
   </article>
 
   <div class="recipe-footer">
